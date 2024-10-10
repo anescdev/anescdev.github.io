@@ -1,5 +1,5 @@
 # Práctica 2.1: Instalación y configuración de un servidor web Nginx
-# Introducción
+## Introducción
 En esta práctica vamos a instalar y configurar Nginx, además 
 del correspondiente software de FTP para poder subir las webs 
 al servidor, y también veremos como configurar HTTPS en Nginx.
@@ -119,6 +119,7 @@ Una vez hecho esto, se deberá de crear el certificado auto-firmado, para esto s
 openssl req -x509 -newkey rsa:4096 -keyout <private_key_file> -out <certificate_file> -sha256 -days 365 --nodes
 ```
 Este comando parece muy complicado pero vamos a explicarlo para que se entienda perfectamente:
+
 * **req**: comando que indica a openssl que vas a iniciar una petición de firmado de certificado.
 * **x509**: indica que usará la estructura de certificado X.509.
 * **newkey**: indica que generará una clave usando el algoritmo indicado despues con `<algoritmo>:<bits>`.
@@ -143,6 +144,7 @@ vacíos menos el de **Common Name** y **Email Address**.
 Ahora para tener el certificado en otra carpeta diferente, voy 
 a mover el certificado y la clave a otra carpeta, mas específico 
 a una que tiene Debian 12 y que almacena todos estos archivos:
+
 * **Certificados**: /etc/ssl/certs
 * **Clave privada**: /etc/ssl/private
 
@@ -164,6 +166,7 @@ devolverá a las peticiones el código 301(redireccionamiento) y redirigirá a l
 ![alt text](../../images/nginx_https_443_port.png)
 
 Ahora para la configuración del SSL, si nos fijamos es muy parecida a la configuración por defecto menos por ciertos detalles, para empezar hemos hecho que no escuche por IPV6, tanto aquí como en la configuración de redireccionamiento, ya que no lo veo necesario, después hay un pequeño añadido en `listen`, que es la palabra `ssl` para poder habilitar el SSL. Para finalizar añadimos dos directivas nuevas, que son:
+
 * ssl_certificate: ruta al certificado generado
 * ssl_certificate_key: ruta a la clave privada del certificado
 
@@ -185,6 +188,7 @@ igual que con FTP, hay que crear un usuario para subir los archivos.
 ![Creación del usuario daweb](../../images/nginx_sftp_user_creation.png)
 
 Para crear un usuario, se deberá de ejecutar el comando de la captura de pantalla, cuyos parámetros explicaré ahora mismo:
+
 * **g**: indicamos cual será su grupo principal, en este caso será el grupo www-data ya que es el grupo por defecto que usa nginx.
 * **m**: indicamos que se creará la carpeta del usuario.
 
@@ -236,5 +240,5 @@ su respectiva contraseña. Tras esto se sube dentro de la carpeta `public_html` 
 La prueba de que todo ha salido correcto se ve en la captura, al acceder a la misma ruta vemos que en vez de mostrar el antiguo archivo, muestra el nuevo que se ha subido por medio de SFTP.
 
 ## Referencias
-* http://nginx.org/en/docs/varindex.html
-* https://raul-profesor.github.io/Despliegue/P1.1/
+* [Documentación de Nginx](http://nginx.org/en/docs/varindex.html)
+* [Material del profesor](https://raul-profesor.github.io/Despliegue/P1.1/)
