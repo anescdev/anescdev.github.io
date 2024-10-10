@@ -5,10 +5,11 @@ la cuaĺ es definida en el estándar de HTTP, aunque sirve para algunas pruebas 
 actual para la autenticación de usuarios ya que el usuario.
 
 Para hacer esto necesitaremos el paquete openssl para poder crear las contraseñas, generalmente viene 
-instalado pero en caso de que no, ejecuta el siguiente comando en tu máquina Debian 12:
+instalado pero en caso de que no, ejecuta el siguiente comando en tu máquina Debian 12, comprobará si 
+está instalado y en caso de que no, lo instalará automáticamente:
 
 ```bash
-sudo apt-get install openssl # nota: mejorar el comando para que detecte la instalación y si no la detecta instalarlo
+openssl -h 2>/dev/null && echo "OpenSSL está instalado en el sistema" || (sudo apt-get update && sudo apt-get install -y openssl)
 ```
 ## Añadir autenticación basic a Nginx
 ### Generar usuarios y contraseñas
