@@ -4,7 +4,7 @@ En esta práctica vamos a instalar y configurar Nginx, además
 del correspondiente software de FTP para poder subir las webs 
 al servidor, y también veremos como configurar HTTPS en Nginx.
 
-![Logo de Nginx](../../images/nginx_logo.png)
+![Logo de Nginx](../../images/prc21/nginx_logo.png)
 ##  Instalación de NGINX
 En primer lugar, para instalar el paquete Nginx en Debian se debe de actualizar los repositorios (para cualquier paquete ciertamente), y después instalarlo, esto se logra mediantes los siguientes comandos:
 ```bash
@@ -12,7 +12,7 @@ sudo apt-get update
 sudo apt-get install nginx
 ```
 Tendría que salir algo parecido a lo de la siguiente captura, nos preguntará si queremos continuar (**se puede obviar usando el parámetro -y en el segundo comando anterior**), escribimos S y presionamos sobre Enter.
-![Captura de proceso de instalación](../../images/nginx_installation.png)
+![Captura de proceso de instalación](../../images/prc21/nginx_installation.png)
 
 Una vez hecho esto solo queda comprobar el estado del servicio web, para realizar esto en Debian 12, se usará el siguiente comando:
 ```bash
@@ -20,17 +20,17 @@ sudo systemctl status nginx
 ```
 Este comando se deberá ejecutar con sudo ya que así nos mostrarán los mensajes de logs de la aplicación para comprobar que todo vaya correctamente,
 si todo salió bien, se deberá de mostrar algo como en la captura:
-![Estado del servicio Nginx](../../images/nginx_clean_status.png)
+![Estado del servicio Nginx](../../images/prc21/nginx_clean_status.png)
 
 En caso de que algo haya ido mal lo mostrará en los logs el problema que hay para poder arreglarlo.
 Como prueba final si accedemos al servidor por medio de su IP en un navegador web y se nos muestra la web por defecto de Nginx, tal y como en la siguiente captura.
 
-![Web por defecto de Nginx](../../images/nginx_default_web.png)
+![Web por defecto de Nginx](../../images/prc21/nginx_default_web.png)
 ### Configuración de un host en Nginx
 ### Creación del directorio del servidor
 Para configurar un host separado de los demás lo recomendable es crear una carpeta donde poner los archivos por cada host, por lo que se creara una carpeta dentro del directorio `/var/www` que es la carpeta por defecto del servidor web, se darán los permisos necesarios y se cambiará el dueño de la carpeta para que no haya problemas de acceso.
 
-![Creación de carpeta del host](../../images/nginx_web_directory_creation.png)
+![Creación de carpeta del host](../../images/prc21/nginx_web_directory_creation.png)
 
 El conjunto de comandos usado es:
 ```bash
@@ -59,11 +59,11 @@ server {
 
 El `<hostname>` es el nombre de host por el que se accederá a la web y el `<foldername` es la ruta al directorio que creamos en el subapartado anterior. Quedaría algo así un archivo de configuración básica:
 
-![Configuración básica de un host Nginx](../../images/nginx_basic_configuration.png)
+![Configuración básica de un host Nginx](../../images/prc21/nginx_basic_configuration.png)
 
 Ahora para habilitar este sitio, debemos de poner este archivo dentro de `sites-enabled`, lo más común es crear un enlace simbólico desde el fichero en `sites-available` a `sites-enabled` tal y como se muestra en la siguiente captura:
 
-![Habilitación del host](../../images/nginx_enabled_site.png)
+![Habilitación del host](../../images/prc21/nginx_enabled_site.png)
 
 Ahora solo queda reiniciar el servicio de Nginx usando el siguiente comando:
 ```bash
@@ -84,16 +84,16 @@ Para modificarlo deberás de usar tu editor de texto favorito con permisos de ad
 ...
 ```
 En mi caso he puesto un comentario para mas claridad(simplemente separar), y ahi he puesto que en __**MI sistema**__ resuelva el nombre a esa IP.
-![alt text](../../images/nginx_host_file.png)
+![alt text](../../images/prc21/nginx_host_file.png)
 
 ### Probar web
 Para probar el host, voy a crear un archivo de prueba muy básico y lo guardaré dentro de `/var/www/daweb` ya que es donde está la carpeta raíz del host configurado anteriormente
 
-![Imagen con el código HTML de DAWEB](../../images/nginx_daweb_html.png)
+![Imagen con el código HTML de DAWEB](../../images/prc21/nginx_daweb_html.png)
 
 Solo quedaría acceder a la web en el navegador.
 
-![alt text](../../images/nginx_web_test.png)
+![alt text](../../images/prc21/nginx_web_test.png)
 
 ## Añadir cifrado (HTTPS)
 
@@ -130,7 +130,7 @@ Este comando parece muy complicado pero vamos a explicarlo para que se entienda 
 * **nodes**: no encripta la clave privada, por lo que no nos pedirá contraseña para la clave. Lo usamos aquí para que
 no de problemas con Nginx al momento de importarla en el host. **Recomendable usar el parámetro `noenc` ya que `nodes` está en desuso pero aun funciona.**
 
-![Comando ssl para generar el certificado y la clave](../../images/nginx_openssl_command.png)
+![Comando ssl para generar el certificado y la clave](../../images/prc21/nginx_openssl_command.png)
 
 Después nos pediran que rellenemos una serie de datos, se 
 rellenan conforme los pidan pero quiero hacer incapié en el 
@@ -139,7 +139,7 @@ dominios y subdominios al que el certificado va dirigido.
 Para hacer un certificado rápido puedes dejar todos los campos 
 vacíos menos el de **Common Name** y **Email Address**.
 
-![Mover certificado a otra carpeta](../../images/nginx_move_certificate.png)
+![Mover certificado a otra carpeta](../../images/prc21/nginx_move_certificate.png)
 
 Ahora para tener el certificado en otra carpeta diferente, voy 
 a mover el certificado y la clave a otra carpeta, mas específico 
@@ -155,7 +155,7 @@ cuando un usuario se conecte al servidor por HTTP, el protocolo
 sin cifrado, redirija automáticamente a HTTPS, esto es algo sencillo
 por suerte, se hace de la siguiente forma:
 
-![Configuración del host en el puerto 80](../../images/nginx_https_80_port.png)
+![Configuración del host en el puerto 80](../../images/prc21/nginx_https_80_port.png)
 
 Estas directivas son muy sencillas de entender pero por si acaso, 
 las voy a explicar. La primera indica que escuchará en el puerto 80,
@@ -163,7 +163,7 @@ el por defecto del protocolo HTTP, la segunda indica el nombre del host,
 el que pusimos en el certificado, y el último indica que el host
 devolverá a las peticiones el código 301(redireccionamiento) y redirigirá a la misma URL pero cambiando el protocolo por HTTPS.
 
-![alt text](../../images/nginx_https_443_port.png)
+![alt text](../../images/prc21/nginx_https_443_port.png)
 
 Ahora para la configuración del SSL, si nos fijamos es muy parecida a la configuración por defecto menos por ciertos detalles, para empezar hemos hecho que no escuche por IPV6, tanto aquí como en la configuración de redireccionamiento, ya que no lo veo necesario, después hay un pequeño añadido en `listen`, que es la palabra `ssl` para poder habilitar el SSL. Para finalizar añadimos dos directivas nuevas, que son:
 
@@ -171,11 +171,11 @@ Ahora para la configuración del SSL, si nos fijamos es muy parecida a la config
 * ssl_certificate_key: ruta a la clave privada del certificado
 
 ### Accedemos a la web
-![Se muestra aviso de peligro del navegador](../../images/nginx_warning_browser.png)
+![Se muestra aviso de peligro del navegador](../../images/prc21/nginx_warning_browser.png)
 
 En la captura se demuestra que al acceder a la web, esta redirige al host HTTPS y se ve un candado con alerta, pero dice **riesgo de seguridad**. Esto se debe a que al usar un certificado firmado por uno mismo y no por una CA válida, para el navegador es un certificado inseguro aunque esté vigente. Simplemente buscamos el botón de Aceptar el riesgo y continuar y podemos acceder a la web.
 
-![Prueba del candado y HTTPS](../../images/nginx_browser_https.png)
+![Prueba del candado y HTTPS](../../images/prc21/nginx_browser_https.png)
 
 Como se ve, se muestra la web tal y como la teníamos pero con el protocolo HTTPS.
 
@@ -185,7 +185,7 @@ también es posible hacerlo directamente con SSH pero al
 igual que con FTP, hay que crear un usuario para subir los archivos.
 
 ### Creación del usuario
-![Creación del usuario daweb](../../images/nginx_sftp_user_creation.png)
+![Creación del usuario daweb](../../images/prc21/nginx_sftp_user_creation.png)
 
 Para crear un usuario, se deberá de ejecutar el comando de la captura de pantalla, cuyos parámetros explicaré ahora mismo:
 
@@ -199,7 +199,7 @@ Ahora para que el servicio ssh encuentre el nuevo usuario, se deberá de reinici
 ```bash
 sudo systemctl restart sshd
 ```
-![Alteración en la configuración del servidor](../../images/nginx_sftp_connect_prove.png)
+![Alteración en la configuración del servidor](../../images/prc21/nginx_sftp_connect_prove.png)
 
 Para comprobar que podemos conectarnos, usaremos Filezilla para ello, rellenamos con los datos para conectarnos en la captura podemos ver que estamos en la carpeta del nuevo usuario creado.
 
@@ -210,13 +210,13 @@ de varias formas, entre ellas darle permisos al usuario creado en el directorio 
 la que nosotros vamos a hacer, crear una carpeta dentro de la carpeta home del 
 nuevo usuario.
 
-![Creación de nueva carpeta raiz del servidor](../../images/nginx_sftp_folder_creation.png)
+![Creación de nueva carpeta raiz del servidor](../../images/prc21/nginx_sftp_folder_creation.png)
 
 El nombre de la carpeta que debemos de crear puede ser cualquiera, pero por defecto se suele 
 usar `public_html` por lo que ese será el nombre de este. Si nos fijamos el grupo que tiene acceso 
 a la carpeta es `www-data`, gracias a que el usuario daweb su grupo principal es el mismo.
 
-![Cambio de carpeta raíz](../../images/nginx_sftp_host_configuration.png)
+![Cambio de carpeta raíz](../../images/prc21/nginx_sftp_host_configuration.png)
 
 El siguiente paso es abrir el archivo de configuración del host, y buscar la directiva `root` para sustituir la antigua ruta
 por la ruta hacia la carpeta que hemos creado ahora mismo. Guardamos los cambios y reiniciamos el servidor con el siguiente comando
@@ -225,17 +225,17 @@ sudo systemctl restart nginx
 ```
 
 ### Prueba de subida
-![Creación de archivo de prueba](../../images/nginx_sftp_index_creation.png)
+![Creación de archivo de prueba](../../images/prc21/nginx_sftp_index_creation.png)
 
 Se crea un nuevo archivo de pruebas para comprobar que la subida a esta carpeta funciona y que cuando coloquemos el archivo dentro de `public_html`,
 los cambios se vean reflejados por los usuarios.
 
-![Subida de archivo de prueba por SFTP](../../images/nginx_sftp_index_upload.png)
+![Subida de archivo de prueba por SFTP](../../images/prc21/nginx_sftp_index_upload.png)
 
 Nos conectamos de nuevo al servidor usando un cliente FTP, en mi caso Filezilla pero esta vez cambiamos el usuario `anes` por `daweb` y ponemos
 su respectiva contraseña. Tras esto se sube dentro de la carpeta `public_html` el archivo html creado.
 
-![Prueba de que funciona el archivo subido por SFTP](../../images/nginx_sftp_index_prove.png)
+![Prueba de que funciona el archivo subido por SFTP](../../images/prc21/nginx_sftp_index_prove.png)
 
 La prueba de que todo ha salido correcto se ve en la captura, al acceder a la misma ruta vemos que en vez de mostrar el antiguo archivo, muestra el nuevo que se ha subido por medio de SFTP.
 
