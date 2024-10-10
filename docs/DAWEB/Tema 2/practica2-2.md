@@ -46,6 +46,9 @@ Al acceder a la ruta nos saltará un formulario del navegador donde nos pide que
 ![Web tras iniciar sesión](../../images/prc22/nginx_auth_success_login.png)
 Aquí se puede comprobar que tras introducir los credenciales correctos podemos acceder a la web que ya teníamos. Si nos fijamos en las cabeceras enviadas hay una muy importante que es `Authorization` donde indica que el tipo de autenticación es `basic` junto al usuario y contraseña codificados en base64.
 
+![Web tras cancelar el incio de sesión](./nginx_auth_cancel_login.png)
+Si cancelamos el inicio de sesión, la web mostrará el error 401 del estándar HTTP, este se muestra cuando un usuario intenta acceder a un recurso
+protegido en un servidor sin introducir unas credenciales válidas. En la captura se puede ver en las cabeceras de respuesta la cabecera `WWW-Authenticate` que indica de nuevo el tipo de autenticación y una palabra clave `realm` que contiene el mensaje que introducimos en el apartado anterior.
 ## Referencias
 * [MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication)
 * [Material del profesor](https://raul-profesor.github.io/DEAW/P1.2/)
