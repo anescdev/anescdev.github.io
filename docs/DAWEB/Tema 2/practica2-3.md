@@ -4,7 +4,9 @@
 Para configurar un servidor proxy, en esta práctica vamos a clonar la máquina virtual que teníamos, indicando previamente que genere una MAC para que al momento de obtener una IP no nos provoque ningún conflicto, para que nos entendamos en la práctica tendremos la máquina del `servidor web` que contendrá la página web que queremos mostrar, y la máquina del `proxy` que se encargará de dirigir la petición al servidor y de devolver la respuesta de este al cliente.
 
 ## Configuración del servidor web
-![Desactivación de configuración de la práctica anterior](../../images/pcr23/image.png)
+```bash
+sudo rm /etc/nginx/sites-available/web2-dwes.es
+```
 
 Para no tocar lo que ya tenemos funcionando, vamos a trabajar en una copia del archivo de configuración del servidor web, 
 para empezar debemos de borrar el enlace simbólico hacia la configuración de la carpeta `sites-enabled`. Con esto, desactivaremos
