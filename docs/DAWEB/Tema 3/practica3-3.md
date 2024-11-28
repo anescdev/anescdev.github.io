@@ -3,9 +3,11 @@
 !!! danger "Cuidao"
     Falta documentar
 
-## Instalación de pipenv
+## Inicialización y despliegue básico de aplicación
+### Instalación de pipenv
 ![Instalación de pipenv y pip](../../images/pcr33/image.png)
 
+### Inicialización de aplicación
 ![Clonación de la aplicación](image-4.png)
 
 ![Creación del fichero .env](image.png)
@@ -15,19 +17,20 @@
 ![Instalación de dependencias](image-1.png)
 
 ![Instalación de dependencias 2](image-2.png)
-
+### Creación de archivo de wsgi
 ![Creación de archivo de arranque de app](image-5.png)
-
+### Prueba de funcionamiento
 ![Probamos si funciona](image-7.png)
 
-## Gunicorn
+## Servicio Gunicorn con Systemd
+
+### Prueba de funcionamiento de Gunicorn
 ![Probamos si funciona correctamente con Gunicorn](image-8.png)
 
-## Creación del servicio de systemd
-
+### Obtención de ruta del ejecutable de gunicorn
 ![Obtenemos el directorio del entorno virtual](image-9.png)
 /home/anes/.local/share/virtualenvs/proyectaso-8Ul5lXJ6/bin/gunicorn
-
+### Creación de servicio Systemd
 ![Creación del servicio](image-14.png)
 
 ## Creación host en Nginx
