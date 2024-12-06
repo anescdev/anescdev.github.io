@@ -137,7 +137,7 @@ netlify deploy --prod
 Una vez hecho esto, nos mostrará al final la URL del sitio desplegado y es la que tenemos que pasar a nuestros usuarios ya que es la que 
 hace falta para conectarla.
 
-![Despliegue a versión de producción](images/pcr32/app-deploy-manual-info-after-prod.png)
+![Despliegue a versión de producción](../../images/pcr32/app-deploy-manual-info-after-prod.png)
 
 ### Despliegue automático mediante repositorio
 

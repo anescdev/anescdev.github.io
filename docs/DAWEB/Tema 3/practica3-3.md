@@ -32,7 +32,7 @@
 ![Obtenemos el directorio del entorno virtual](../../images/pcr33/gunicorn-bin-directory.png)
 
 ### Creación de servicio Systemd
-![Creación del servicio](image-14.png)
+![Creación del servicio](../../images/pcr33/gunicorn-service-systemd.png)
 
 ## Creación host en Nginx
 
