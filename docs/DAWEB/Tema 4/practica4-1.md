@@ -205,8 +205,23 @@ Configura el DNS para que resuelva el nombre de vuestro sitio web de la práctic
 
 Recuerda que con nuestra configuración actual, para acceder a los sitios web necesitaremos añadir el dominio deaw.es en el nombre.
 
-!!! warning "Aviso"
-    Debido a que tuve un problema con las máquina virtuales, voy a usar unas nuevas que cree estas vacaciones de navidad.
+### Añadir los registros DNS
+
+``` DNS title="/etc/bind/db.anesdeaw.es"
+$TTL 604800
+@           	IN	SOA	debian.anes-deaw.es. admin.anes-deaw.es. (
+                    ;[AñoMesDiaVersion]
+                    2025011401 ;Serial
+                    3600 ;Refresh
+                    1800 ;Retry
+                    604800 ;Expire
+                    86400) ; Minimum TTL
+                IN	NS 	debian.anes-deaw.es.
+;
+debian	        IN 	A 	192.168.18.14
+pratresdos      IN  CNAME manusiro-practica32.netlify.app
+pradoscinco    IN  A 192.168.18.16
+```
 
 ## Cuestiones
 !!! task "Cuestión 1"
