@@ -16,7 +16,7 @@ que este lo proporciona, por lo que el comando a usar es:
 ``` bash
 sudo apt-get install bind9 bind9utils bind9-doc
 ```
-![Instalación Bind9](/images/pcr41/bind-installation.png)
+![Instalación Bind9](../../images/pcr41/bind-installation.png)
 
 Puesto que para la práctica y para el servidor de pruebas, la IPV6 no nos va a hacer ninguna
 falta, podemos deshabilitarla cambiando los parámetros de inicio que tendrá el servicio
@@ -25,7 +25,7 @@ falta, podemos deshabilitarla cambiando los parámetros de inicio que tendrá el
 Nos dirigiremos al archivo `/etc/default/named` y en la variable `OPTIONS` tendremos que añadir
 el parámetro `-4` al final, tal y como se muestra en la captura.
 
-![Configuración inicio Bind9](/images/pcr41/bind-statup-config.png)
+![Configuración inicio Bind9](../../images/pcr41/bind-statup-config.png)
 
 ## Archivo de agrupación de configuración
 Este archivo se encarga de agrupar los tres archivos de configuración principales del
@@ -36,7 +36,7 @@ de incluir los diferentes archivos de configuración los cuales son:
 * `named.conf.local`: Archivo donde se definen las zonas del servidor Bind9.
 * `named.conf.default-zones`: Este archivo contiene las zonas por defecto del servidor Bind9. Estas zonas son las del localhost, y la de broadcast, este no lo tocaremos en esta práctica.
 
-![Archivo de agrupación de configuración](/images/pcr41/group-configuration-file.png)
+![Archivo de agrupación de configuración](../../images/pcr41/group-configuration-file.png)
 
 ## Configuración general
 Antes de definir las zonas, tendremos que realizar ciertas modificaciones en el archivo de configuración general.
@@ -57,7 +57,7 @@ acl "<nombreAcl>" {
     //...
 };
 ```
-![Lista blanca de redes](/images/pcr41/white-list.png)
+![Lista blanca de redes](../../images/pcr41/white-list.png)
 !!! info "Direcciones de red"
     Las direcciones de red se obtiene poniendo los bits de host a 0. 
     
@@ -73,7 +73,7 @@ La configuración que vamos a hacer extra es la siguiente:
 * Indicamos que el servidor Bind9 escucha en el puerto e ip indicado.
 * Permitimos las consultas recursivas en Bind9
 
-![Configuración del servidor](/images/pcr41/global-config.png)
+![Configuración del servidor](../../images/pcr41/global-config.png)
 
 ## Creación de las zonas DNS
 Ahora vamos a definir las zonas directas e inversas para resolver el nombre de dominio que se añada a este.
@@ -113,12 +113,12 @@ zone "<nombre zona>" {
 }
 ```
 
-![Definición de la zona](/images/pcr41/direct-zone.png)
+![Definición de la zona](../../images/pcr41/direct-zone.png)
 
 #### Archivo de la zona
 Añadimos los correspondientes registros `SOA`, `NS` y un nuevo registro de tipo `A`. Este indica que el subdominio `debian`
 hará referencia a la IP que le indiquemos, siendo su sintáxis de la siguiente manera: `<subdominio> IN A <ip`>`.
-![Configuración de la zona](/images/pcr41/direct-zone-file.png)
+![Configuración de la zona](../../images/pcr41/direct-zone-file.png)
 
 ### Zona DNS inversa
 #### Definición de la zona inversa
@@ -127,7 +127,7 @@ resolver inversamente de IP a nombre de dominio.
 
 El nombre de la zona es `<direccion de red sin los octetos de host>.in-addr.arpa`. Por lo demás es igual a crear una zona normal.
 
-![Definición de la zona inversa](/images/pcr41/inverse-zone.png)
+![Definición de la zona inversa](../../images/pcr41/inverse-zone.png)
 
 #### Archivo de la zona inversa
 Añadimos los correspondientes registros `SOA`, `NS` y un nuevo registro de tipo `PTR`.
@@ -137,7 +137,7 @@ al registro va invertida, es decir que si la IP es `192.168.18.14`, en el regist
 zona se llama `18.168.192.in-addr.arpa (en mi caso)` esto permite que en el registro en vez de colocar todo el número
 solo coloquemos la parte de host, es decir `14`.
 
-![Configuración de la zona inversa](/images/pcr41/inverse-zone-file.png)
+![Configuración de la zona inversa](../../images/pcr41/inverse-zone-file.png)
 
 ## Comprobación del funcionamiento del DNS
 ### Comprobamos configuración
@@ -152,7 +152,7 @@ sudo named-checkconf <archivo de la zona> <archivo de la zona inversa>
 # Comprobar la zona inversa
 sudo named-checkconf <archivo de la zona inversa> <archivo de la zona>
 ```
-![Comprobamos las zonas](/images/pcr41/check-zone.png)
+![Comprobamos las zonas](../../images/pcr41/check-zone.png)
 
 Una vez tenemos `OK` en las dos zonas, podemos reiniciar el servicio de Bind9 para aplicar los cambios, esto se hace
 con el siguiente comando:
@@ -165,7 +165,7 @@ En caso de que queramos comprobar si todo ha sido cargado correctamente, usamos 
 sudo systemctl status named
 ```
 
-![Recargamos el servicio de Bind9](/images/pcr41/restart-service.png)
+![Recargamos el servicio de Bind9](../../images/pcr41/restart-service.png)
 
 ### Comprobamos las resoluciones de nombre con dig
 
@@ -173,7 +173,7 @@ Para comprobar que todo funciona correctamente primeramente debemos de configura
 servidor DNS para que pregunte a este además del por defecto, en mi caso con Ubuntu sería en la configuración de 
 la red conectada.
 
-![Configuración de red Ubuntu](/images/pcr41/add-dns-to-adapter.png)
+![Configuración de red Ubuntu](../../images/pcr41/add-dns-to-adapter.png)
 
 !!! warning "Sobre la configuración del adaptador"
     Para realizar la prueba, lo normal es añadir el DNS por defecto y antes de este el DNS que hemos configurado
@@ -188,7 +188,7 @@ dig <subdominio o dominio>
 Y nos tiene que devolver que en el partado de `QUESTION` pedimos el registro de tipo `A` con esa ip para que después
 en el apartado `ANSWER` nos indique la misma cabecera pero con la IP del registro. Tal y como se ve en la captura.
 
-![Comprobación de la zona directa](/images/pcr41/dig-direct.png)
+![Comprobación de la zona directa](../../images/pcr41/dig-direct.png)
 
 Ahora para ver si nos resuelve correctamente el nombre, debemos de usar el comando:
 ``` bash
@@ -198,7 +198,7 @@ dig -x <ip>
 Y nos tiene que devolver que en el partado de `QUESTION` pedimos el registro de tipo `OTR` con esa ip para que después
 en el apartado `ANSWER` nos indique la misma cabecera pero con el nombre al que apunta el registro. Tal y como se ve en la captura.
 
-![Comprobación de la zona inversa](/images/pcr41/dig-inverse.png)
+![Comprobación de la zona inversa](../../images/pcr41/dig-inverse.png)
 
 ## Tarea
 Configura el DNS para que resuelva el nombre de vuestro sitio web de la práctica 3.5 y de la 3.2.
@@ -280,7 +280,7 @@ correspondiente la consulta,
 de la respuesta definitiva. 
 
 Gráficamente sigue el siguiente esquema:
-![cuestion9 esquema](/images/pcr41/9question-scheme.png)
+![cuestion9 esquema](../../images/pcr41/9question-scheme.png)
 
 Para no cargar mucho el esquema quiero matizar que donde dice "DNS donde buscar de nuevo", en realidad es una respuesta
 DNS parcial, la cual va formando la respuesta definitiva.
