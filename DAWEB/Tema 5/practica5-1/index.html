@@ -1,0 +1,2613 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Tema%204/practica4-1/">
+      
+      
+        <link rel="next" href="../../Tema%206/practica6-1/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+    
+    
+      
+        <title>Práctica 5.1: Ejercicios de Git - AnesCatmanDev Daw</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practica-51-ejercicios-de-git" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AnesCatmanDev Daw" class="md-header__button md-logo" aria-label="AnesCatmanDev Daw" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AnesCatmanDev Daw
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Práctica 5.1: Ejercicios de Git
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AnesCatmanDev Daw" class="md-nav__button md-logo" aria-label="AnesCatmanDev Daw" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AnesCatmanDev Daw
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DAWEB
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            DAWEB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%202/practica2-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 2.1: Instalación y configuración de un servidor web Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%202/practica2-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 2.2: Autenticación en un servidor web Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%202/practica2-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 2.3: Proxy inverso con Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%202/practica2-4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 2.4: Balanceo de carga con proxy inverso en Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%202/practica2-5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica 2.5: Proxy inverso y balanceo de carga con SSL en NGINX
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%202/practica2-amp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica de amplicación: Configuración de un servidor Nginx con Hosts Virtuales y directorios de usuario
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%203/practica3-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 3.1: Instalación de Tomcat y Maven para despliegue de aplicación Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%203/practica3-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 3.2: Despliegue de aplicaciones con Node Express y en Netlify
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%203/practica3-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 3.3: Despliegue de una aplicación Flask (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%204/practica4-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 4.1: Configuración de un servidor DNS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Práctica 5.1: Ejercicios de Git
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 5.1: Ejercicios de Git
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios-i" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicios (I)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicios (I)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicio 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creacion-del-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creación del repositorio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Readme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commit inicial
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Push inicial
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignorar-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ignorar archivos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anadir-fichero-1txt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir fichero 1.txt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crear-el-tag-v01" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear el tag v0.1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subir-el-tag-v01" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subir el tag v0.1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuenta-de-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuenta de GitHub
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cuenta de GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#poner-una-foto-en-vuestro-perfil-de-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Poner una foto en vuestro perfil de GitHub.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poner-el-doble-factor-de-autentificacion-en-vuestra-cuenta-de-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Poner el doble factor de autentificación en vuestra cuenta de GitHub.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-social-de-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso social de GitHub
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uso social de GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preguntar-los-nombres-de-usuario-de-github-de-2-de-tus-companeros-de-clase-buscalos-y-sigueles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preguntar los nombres de usuario de GitHub de 2 de tus compañeros de clase, búscalos, y sigueles.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seguir-los-repositorios-deaw-del-resto-de-tus-companeros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seguir los repositorios DEAW del resto de tus compañeros.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anadir-una-estrella-a-los-repositorios-deaw-del-resto-de-tus-companeros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir una estrella a los repositorios DEAW del resto de tus compañeros.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crear-una-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear una tabla
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colaboradores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Colaboradores
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicio 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crear-una-rama-v02" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear una rama v0.2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anadir-fichero-2txt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir fichero 2.txt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crear-rama-remota-v02" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear rama remota v0.2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge-directo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge directo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Merge directo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parte-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parte-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge-con-conflicto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge con conflicto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Merge con conflicto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parte-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parte-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parte-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listado-de-ramas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listado de ramas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Listado de ramas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ramas-con-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ramas con merge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ramas-sin-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ramas sin merge
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arreglar-conflicto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arreglar conflicto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#borrar-rama" class="md-nav__link">
+    <span class="md-ellipsis">
+      Borrar rama
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Borrar rama">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crea-un-tag-v02" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crea un tag v0.2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#borrar-rama-v02" class="md-nav__link">
+    <span class="md-ellipsis">
+      Borrar rama v0.2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listado-de-cambios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listado de cambios
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios-ii" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicios (II)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicios (II)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creacion-y-actualizacion-de-repostorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creación y actualización de repostorios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creación y actualización de repostorios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manejo-del-historial-de-cambios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manejo del historial de cambios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manejo del historial de cambios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 4
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deshacer-cambios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deshacer cambios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deshacer cambios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 4
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-de-ramas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gestión de ramas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestión de ramas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 5
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repositorios-remotos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repositorios remotos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Repositorios remotos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 6
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 6
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%206/practica6-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 6.1: Dockerización del despliegue de una aplicación con NodeJS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%206/practica6-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 6.2: Despliegue de una aplicación PHP con Nginx y MySQL usando Docker y docker-compose
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%206/practica6-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 6.3: Despliegue de servidores web con usuarios autenticados mediante LDAP usando Docker y docker-compose
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios-i" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicios (I)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicios (I)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicio 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creacion-del-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creación del repositorio
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#readme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Readme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commit inicial
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Push inicial
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ignorar-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ignorar archivos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anadir-fichero-1txt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir fichero 1.txt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crear-el-tag-v01" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear el tag v0.1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subir-el-tag-v01" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subir el tag v0.1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cuenta-de-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuenta de GitHub
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cuenta de GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#poner-una-foto-en-vuestro-perfil-de-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Poner una foto en vuestro perfil de GitHub.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poner-el-doble-factor-de-autentificacion-en-vuestra-cuenta-de-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Poner el doble factor de autentificación en vuestra cuenta de GitHub.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-social-de-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uso social de GitHub
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uso social de GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preguntar-los-nombres-de-usuario-de-github-de-2-de-tus-companeros-de-clase-buscalos-y-sigueles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preguntar los nombres de usuario de GitHub de 2 de tus compañeros de clase, búscalos, y sigueles.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seguir-los-repositorios-deaw-del-resto-de-tus-companeros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seguir los repositorios DEAW del resto de tus compañeros.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anadir-una-estrella-a-los-repositorios-deaw-del-resto-de-tus-companeros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir una estrella a los repositorios DEAW del resto de tus compañeros.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crear-una-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear una tabla
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#colaboradores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Colaboradores
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicio 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crear-una-rama-v02" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear una rama v0.2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anadir-fichero-2txt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir fichero 2.txt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crear-rama-remota-v02" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear rama remota v0.2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge-directo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge directo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Merge directo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parte-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parte-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge-con-conflicto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge con conflicto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Merge con conflicto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parte-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parte-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parte-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parte 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listado-de-ramas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listado de ramas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Listado de ramas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ramas-con-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ramas con merge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ramas-sin-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ramas sin merge
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arreglar-conflicto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arreglar conflicto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#borrar-rama" class="md-nav__link">
+    <span class="md-ellipsis">
+      Borrar rama
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Borrar rama">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crea-un-tag-v02" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crea un tag v0.2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#borrar-rama-v02" class="md-nav__link">
+    <span class="md-ellipsis">
+      Borrar rama v0.2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listado-de-cambios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Listado de cambios
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios-ii" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicios (II)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicios (II)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creacion-y-actualizacion-de-repostorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creación y actualización de repostorios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creación y actualización de repostorios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manejo-del-historial-de-cambios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manejo del historial de cambios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manejo del historial de cambios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 4
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deshacer-cambios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deshacer cambios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deshacer cambios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 4
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-de-ramas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gestión de ramas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestión de ramas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 5
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repositorios-remotos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repositorios remotos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Repositorios remotos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-1_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejercicio-2_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejercicio 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="practica-51-ejercicios-de-git">Práctica 5.1: Ejercicios de Git</h1>
+<h2 id="ejercicios-i">Ejercicios (I)</h2>
+<h3 id="ejercicio-1">Ejercicio 1</h3>
+<h4 id="creacion-del-repositorio">Creación del repositorio</h4>
+<p><img alt="Creación del repo" src="../../../images/pcr51/image.png" />
+<img alt="Clonación del repo" src="../../../images/pcr51/image-1.png" /></p>
+<h4 id="readme">Readme</h4>
+<p><img alt="Readme" src="../../../images/pcr51/image-2.png" /></p>
+<h4 id="commit-inicial">Commit inicial</h4>
+<p><img alt="Commit" src="../../../images/pcr51/image-3.png" /></p>
+<h4 id="push-inicial">Push inicial</h4>
+<p><img alt="Push inicial" src="../../../images/pcr51/image-4.png" /></p>
+<h4 id="ignorar-archivos">Ignorar archivos</h4>
+<p><img alt="Creación del fichero" src="../../../images/pcr51/image-5.png" />
+<img alt="Creación de la carpeta" src="../../../images/pcr51/image-6.png" />
+<img alt="Creación del gitignore" src="../../../images/pcr51/image-7.png" /></p>
+<h4 id="anadir-fichero-1txt">Añadir fichero 1.txt</h4>
+<p><img alt="Añadir fichero" src="../../../images/pcr51/image-8.png" /></p>
+<h4 id="crear-el-tag-v01">Crear el tag v0.1</h4>
+<p><img alt="Crear tag v0.1" src="../../../images/pcr51/image-9.png" /></p>
+<h4 id="subir-el-tag-v01">Subir el tag v0.1</h4>
+<p><img alt="Subir tag" src="../../../images/pcr51/image-10.png" /></p>
+<p><img alt="Prueba del tag" src="../../../images/pcr51/image-11.png" /></p>
+<h4 id="cuenta-de-github">Cuenta de GitHub</h4>
+<h5 id="poner-una-foto-en-vuestro-perfil-de-github">Poner una foto en vuestro perfil de GitHub.</h5>
+<p><img alt="Ajustes del perfil" src="../../../images/pcr51/image-32.png" /></p>
+<p><img alt="Ajustar imagen" src="../../../images/pcr51/image-33.png" /></p>
+<h5 id="poner-el-doble-factor-de-autentificacion-en-vuestra-cuenta-de-github">Poner el doble factor de autentificación en vuestra cuenta de GitHub.</h5>
+<p><img alt="Autenticación de doble factor" src="../../../images/pcr51/image-34.png" /></p>
+<h4 id="uso-social-de-github">Uso social de GitHub</h4>
+<h5 id="preguntar-los-nombres-de-usuario-de-github-de-2-de-tus-companeros-de-clase-buscalos-y-sigueles">Preguntar los nombres de usuario de GitHub de 2 de tus compañeros de clase, búscalos, y sigueles.</h5>
+<p><img alt="Natividad Marguez" src="../../../images/pcr51/image-35.png" />
+<img alt="Jaime Grueso" src="../../../images/pcr51/image-36.png" /></p>
+<h5 id="seguir-los-repositorios-deaw-del-resto-de-tus-companeros">Seguir los repositorios DEAW del resto de tus compañeros.</h5>
+<p><img alt="Repo Nati" src="../../../images/pcr51/image-37.png" />
+<img alt="Repo Jaime Grueso" src="../../../images/pcr51/image-38.png" /></p>
+<h5 id="anadir-una-estrella-a-los-repositorios-deaw-del-resto-de-tus-companeros">Añadir una estrella a los repositorios DEAW del resto de tus compañeros.</h5>
+<p><img alt="Estrellita Nati" src="../../../images/pcr51/image-39.png" />
+<img alt="Estrellita Jaime" src="../../../images/pcr51/image-40.png" /></p>
+<h4 id="crear-una-tabla">Crear una tabla</h4>
+<p><img alt="Modificación del readme" src="../../../images/pcr51/image-12.png" /></p>
+<h4 id="colaboradores">Colaboradores</h4>
+<p>Añadir a https://github.com/dlopezmfp como colaborador</p>
+<p><img alt="Apartado de colaboradores en el repo" src="../../../images/pcr51/image-13.png" /></p>
+<p><img alt="Añadir profesor" src="../../../images/pcr51/image-14.png" /></p>
+<p><img alt="Añadir profesor 2" src="../../../images/pcr51/image-15.png" /></p>
+<h3 id="ejercicio-2">Ejercicio 2</h3>
+<h4 id="crear-una-rama-v02">Crear una rama v0.2</h4>
+<p><img alt="Crear rama" src="../../../images/pcr51/image-16.png" /></p>
+<h4 id="anadir-fichero-2txt">Añadir fichero 2.txt</h4>
+<p><img alt="Añadir fichero 2.txt" src="../../../images/pcr51/image-17.png" /></p>
+<h4 id="crear-rama-remota-v02">Crear rama remota v0.2</h4>
+<p><img alt="Comandos para crear la rama remota" src="../../../images/pcr51/image-18.png" /></p>
+<p><img alt="Repositorio remoto con 2.txt" src="../../../images/pcr51/image-19.png" /></p>
+<h4 id="merge-directo">Merge directo</h4>
+<h5 id="parte-1">Parte 1</h5>
+<p><img alt="Creamos fichero para commit directo" src="../../../images/pcr51/image-24.png" /></p>
+<h5 id="parte-2">Parte 2</h5>
+<p><img alt="Commit directo" src="../../../images/pcr51/image-25.png" /></p>
+<h4 id="merge-con-conflicto">Merge con conflicto</h4>
+<h5 id="parte-1_1">Parte 1</h5>
+<p>En la rama <em>master</em> poner <em>Hola</em> en el fichero <em>1.txt</em> y hacer commit
+<img alt="Parte 1 merge con conflicto" src="../../../images/pcr51/image-20.png" /></p>
+<h5 id="parte-2_1">Parte 2</h5>
+<p>Posicionarse en la rama <em>v0.2</em> y poner <em>Adios</em> en el fichero "1.txt" y hacer commit.
+<img alt="Parte 2 merge con conflicto" src="../../../images/pcr51/image-21.png" /></p>
+<h5 id="parte-3">Parte 3</h5>
+<p>Posicionarse de nuevo en la rama <em>master</em> y hacer un merge con la rama <em>v0.2</em>
+<img alt="Conflicto" src="../../../images/pcr51/image-22.png" /></p>
+<h4 id="listado-de-ramas">Listado de ramas</h4>
+<p><img alt="Imagen del listado de todas las ramas" src="../../../images/pcr51/image-26.png" /></p>
+<h5 id="ramas-con-merge">Ramas con merge</h5>
+<p><img alt="Imagen del listado de ramas con merge" src="../../../images/pcr51/image-27.png" /></p>
+<h5 id="ramas-sin-merge">Ramas sin merge</h5>
+<p><img alt="Imagen del listado de ramas sin merge" src="../../../images/pcr51/image-28.png" /></p>
+<h4 id="arreglar-conflicto">Arreglar conflicto</h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Hola
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>============
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Adios
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+</span></code></pre></div>
+<p><img alt="Arreglo del conflicto" src="../../../images/pcr51/image-23.png" /></p>
+<h4 id="borrar-rama">Borrar rama</h4>
+<h5 id="crea-un-tag-v02">Crea un tag v0.2</h5>
+<p><img alt="Tag v0.2" src="../../../images/pcr51/image-29.png" /></p>
+<h5 id="borrar-rama-v02">Borrar rama v0.2</h5>
+<p><img alt="Borrado de rama" src="../../../images/pcr51/image-30.png" /></p>
+<h4 id="listado-de-cambios">Listado de cambios</h4>
+<p><img alt="Listado de cambios" src="../../../images/pcr51/image-31.png" /></p>
+<h2 id="ejercicios-ii">Ejercicios (II)</h2>
+<h3 id="creacion-y-actualizacion-de-repostorios">Creación y actualización de repostorios</h3>
+<h4 id="ejercicio-1_1">Ejercicio 1</h4>
+<p>Configurar Git definiendo el nombre del usuario, el correo electrónico y activar el coloreado de la salida.
+Mostrar la configuración final.</p>
+<p><img alt="Final configuration" src="../../../images/pcr51/image-41.png" /></p>
+<h4 id="ejercicio-2_1">Ejercicio 2</h4>
+<p>Crear un repositorio nuevo con el nombre libro y mostrar su contenido.
+<img alt="Crear repositorio local y mostrar contenido" src="../../../images/pcr51/image-42.png" /></p>
+<h4 id="ejercicio-3">Ejercicio 3</h4>
+<p>Comprobar el estado del repositorio.
+<img alt="Estado antrs de crear fichero" src="../../../images/pcr51/image-43.png" /></p>
+<p>Crear un fichero indice.txt con el siguiente contenido:</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Capítulo 1: Introducción a Git
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Capítulo 2: Flujo de trabajo básico
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Capítulo 3: Repositorios remotos
+</span></code></pre></div>
+<img alt="Crear fichero indice.txt" src="../../../images/pcr51/image-44.png" /></p>
+<p>Comprobar de nuevo el estado del repositorio.
+<img alt="Estado después de crear fichero" src="../../../images/pcr51/image-45.png" /></p>
+<p>Añadir el fichero a la zona de intercambio temporal.
+<img alt="Añadir fichero al stage" src="../../../images/pcr51/image-46.png" /></p>
+<p>Volver a comprobar una vez más el estado del repositorio.
+<img alt="Estado con el fichero en el stage" src="../../../images/pcr51/image-47.png" /></p>
+<h4 id="ejercicio-4">Ejercicio 4</h4>
+<p>Realizar un commit de los últimos cambios con el mensaje “Añadido índice del libro.” y ver el estado del repositorio.
+<img alt="Commit de los cambios" src="../../../images/pcr51/image-48.png" /></p>
+<h4 id="ejercicio-5">Ejercicio 5</h4>
+<p>Cambiar el fichero indice.txt para que contenga lo siguiente:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Capítulo 1: Introducción a Git
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Capítulo 2: Flujo de trabajo básico
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Capítulo 3: Gestión de ramas
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Capítulo 4: Repositorios remotos
+</span></code></pre></div>
+<img alt="Cambio en el fichero indice.txt" src="../../../images/pcr51/image-49.png" /></p>
+<p>Mostrar los cambios con respecto a la última versión guardada en el repositorio.
+<img alt="Comando git diff" src="../../../images/pcr51/image-50.png" /></p>
+<p>Hacer un commit de los cambios con el mensaje “Añadido capítulo 3 sobre gestión de ramas”.
+<img alt="Commit con los cambios" src="../../../images/pcr51/image-51.png" /></p>
+<p>Sobra el comando git diff aquí, es para comprobar</p>
+<h4 id="ejercicio-6">Ejercicio 6</h4>
+<p>Mostrar los cambios de la última versión del repositorio con respecto a la anterior.
+<img alt="git show para mostrar los cambios" src="../../../images/pcr51/image-52.png" /></p>
+<p>Cambiar el mensaje del último commit por “Añadido capítulo 3 sobre gestión de ramas al índice.”
+<img alt="Cambiar mensaje del commit con --amend" src="../../../images/pcr51/image-53.png" /></p>
+<p>Volver a mostrar los últimos cambios del repositorio.
+<img alt="git show con el commit cambiado" src="../../../images/pcr51/image-54.png" /></p>
+<h3 id="manejo-del-historial-de-cambios">Manejo del historial de cambios</h3>
+<h4 id="ejercicio-1_2">Ejercicio 1</h4>
+<p><strong>Mostrar el historial de cambios del repositorio.</strong>
+<img alt="Mostrar historial con git log" src="../../../images/pcr51/image-88.png" /></p>
+<p><strong>Crear la carpeta capitulos y crear dentro de ella el fichero capitulo1.txt con el siguiente texto.</strong></p>
+<p><code>Git es un sistema de control de versiones ideado por Linus Torvalds.</code>
+Git es un sistema de control de versiones ideado por Linus Torvalds.</p>
+<p><img alt="Crear carpeta y fichero capitulo1.txt" src="../../../images/pcr51/image-89.png" /></p>
+<p><strong>Añadir los cambios a la zona de intercambio temporal.</strong>
+<img alt="Añadir cambios al stage" src="../../../images/pcr51/image-90.png" /></p>
+<p><strong>Hacer un commit de los cambios con el mensaje <em>“Añadido capítulo 1.”</em> Volver a mostrar el historial de cambios del repositorio.</strong>
+<img alt="Commit hecho" src="../../../images/pcr51/image-91.png" />
+<img alt="Último cambio del historial" src="../../../images/pcr51/image-92.png" /></p>
+<h4 id="ejercicio-2_2">Ejercicio 2</h4>
+<p><strong>Crear el fichero <code>capitulo2.txt</code> en la carpeta capitulos con el siguiente texto.</strong></p>
+<p><code>El flujo de trabajo básico con Git consiste en: 1- Hacer cambios en el repositorio. 2- Añadir los cambios a la zona de intercambio temporal. 3- Hacer un commit de los cambios.</code></p>
+<p><img alt="Añadir capitulo2.txt" src="../../../images/pcr51/image-93.png" /></p>
+<p><strong>Añadir los cambios a la zona de intercambio temporal.</strong></p>
+<p><img alt="Añadir los cambios" src="../../../images/pcr51/image-94.png" /></p>
+<p><strong>Hacer un commit de los cambios con el mensaje <em>“Añadido capítulo 2.”</em></strong></p>
+<p><img alt="Commit de los cambios" src="../../../images/pcr51/image-95.png" /></p>
+<p><strong>Mostrar las diferencias entre la última versión y dos versiones anteriores.</strong></p>
+<p>Para esto buscamos en <code>git log</code> un commit antiguo ya que branch no tenemos y comparamos</p>
+<p><img alt="Diferencia con un commit antiguo" src="../../../images/pcr51/image-96.png" /></p>
+<p><img alt="Diferencia con otro commit" src="../../../images/pcr51/image-97.png" /></p>
+<h4 id="ejercicio-3_1">Ejercicio 3</h4>
+<p><strong>Crear el fichero capitulo3.txt en la carpeta capitulos con el siguiente texto.</strong></p>
+<p><code>Git permite la creación de ramas lo que permite tener distintas versiones del mismo proyecto y trabajar de manera simultanea en ellas.</code></p>
+<p><img alt="Crear fichero capitulo 3" src="../../../images/pcr51/image-98.png" /></p>
+<p><strong>Añadir los cambios a la zona de intercambio temporal.</strong>
+<img alt="Cambios a la zona de intercambio temporal" src="../../../images/pcr51/image-99.png" /></p>
+<p><strong>Hacer un commit de los cambios con el mensaje <em>“Añadido capítulo 3.”</em></strong>
+<img alt="Commit de los cambios" src="../../../images/pcr51/image-100.png" /></p>
+<p><strong>Mostrar las diferencias entre la primera y la última versión del repositorio.</strong>
+<img alt="Diferencia entre las primera y la ultima versión" src="../../../images/pcr51/image-101.png" /></p>
+<h4 id="ejercicio-4_1">Ejercicio 4</h4>
+<p><strong>Añadir al final del fichero <code>indice.txt</code> la siguiente línea:</strong></p>
+<p><code>Capítulo 5: Conceptos avanzados</code></p>
+<p><img alt="Añadir entrada al indice" src="../../../images/pcr51/image-102.png" /></p>
+<p><strong>Añadir los cambios a la zona de intercambio temporal.</strong>
+<img alt="Añadir cambios a zona de intercambio temporal" src="../../../images/pcr51/image-103.png" /></p>
+<p><strong>Hacer un commit de los cambios con el mensaje “Añadido capítulo 5 al índice.”.</strong>
+<img alt="Hacer commit" src="../../../images/pcr51/image-104.png" /></p>
+<p><strong>Mostrar quién ha hecho cambios sobre el fichero <code>indice.txt</code>.</strong>
+<img alt="Último commit" src="../../../images/pcr51/image-105.png" /></p>
+<h3 id="deshacer-cambios">Deshacer cambios</h3>
+<h4 id="ejercicio-1_3">Ejercicio 1</h4>
+<p><strong>Eliminar la última línea del fichero <code>indice.txt</code> y guardarlo.</strong>
+<img alt="Eliminar linea en richero" src="../../../images/pcr51/image-55.png" /></p>
+<p><strong>Comprobar el estado del repositorio.</strong>
+<img alt="Estado antes de deshacer cambio" src="../../../images/pcr51/image-56.png" /></p>
+<p><strong>Deshacer los cambios realizados en el fichero <code>indice.txt</code> para volver a la versión anterior del fichero.</strong>
+<img alt="Deshacer los cambios de indice.txt" src="../../../images/pcr51/image-57.png" /></p>
+<p><strong>Volver a comprobar el estado del repositorio.</strong>
+<img alt="Comprobar estado y fichero tras deshacer los cambios" src="../../../images/pcr51/image-58.png" /></p>
+<h4 id="ejercicio-2_3">Ejercicio 2</h4>
+<p><strong>Eliminar la última línea del fichero <code>indice.txt</code> y guardarlo.</strong>
+<img alt="Eliminar ultima linea ej2" src="../../../images/pcr51/image-59.png" /></p>
+<p><strong>Añadir los cambios a la zona de intercambio temporal.</strong>
+<img alt="Añadir cambios al stage" src="../../../images/pcr51/image-60.png" /></p>
+<p><strong>Comprobar de nuevo el estado del repositorio.</strong>
+<img alt="Comprobamos estado en ej2-b-2" src="../../../images/pcr51/image-61.png" /></p>
+<p><strong>Quitar los cambios de la zona de intercambio temporal, pero mantenerlos en el directorio de trabajo.</strong>
+<img alt="Quitar los cambios del stage" src="../../../images/pcr51/image-62.png" /></p>
+<p><strong>Comprobar de nuevo el estado del repositorio.</strong>
+<img alt="Estado del repo después de quitarlo" src="../../../images/pcr51/image-63.png" /></p>
+<p><strong>Deshacer los cambios realizados en el fichero <code>indice.txt</code> para volver a la versión anterior del fichero.</strong>
+<img alt="Deshecho los cambios del directorio de trabajo" src="../../../images/pcr51/image-64.png" /></p>
+<p><strong>Volver a comprobar el estado del repositorio.</strong>
+<img alt="Estado del repo después de los cambios deshechosy si" src="../../../images/pcr51/image-65.png" /></p>
+<h4 id="ejercicio-3_2">Ejercicio 3</h4>
+<p><strong>Eliminar la última línea del fichero <code>indice.txt</code> y guardarlo.</strong>
+<img alt="Eliminar ultima linea indice.txt" src="../../../images/pcr51/image-66.png" /></p>
+<p><strong>Eliminar el fichero <code>capitulos/capitulo3.txt</code>.</strong>
+<img alt="Eliminar fichero capitulos/capitulo3.txt" src="../../../images/pcr51/image-67.png" /></p>
+<p><strong>Añadir un fichero nuevo <code>capitulos/capitulo4.txt</code> vacío.</strong>
+<img alt="Añadir fichero capitulo4.txt" src="../../../images/pcr51/image-68.png" /></p>
+<p><strong>Añadir los cambios a la zona de intercambio temporal.</strong>
+<img alt="Añadir los cambios al stage" src="../../../images/pcr51/image-69.png" /></p>
+<p><strong>Comprobar de nuevo el estado del repositorio.</strong>
+<img alt="Comprobar estado del repositorio después de los cambios del ej2-c-3" src="../../../images/pcr51/image-70.png" /></p>
+<p><strong>Quitar los cambios de la zona de intercambio temporal, pero mantenerlos en el directorio de trabajo.</strong>
+<img alt="Cambios eliminados del stage" src="../../../images/pcr51/image-71.png" /></p>
+<p><strong>Comprobar de nuevo el estado del repositorio.</strong>
+<img alt="Estado del repositorio después de eliminar los cambio del stage" src="../../../images/pcr51/image-72.png" /></p>
+<p><strong>Deshacer los cambios realizados para volver a la versión del repositorio.</strong>
+<img alt="Cambios deshechos del directorio de trabajo" src="../../../images/pcr51/image-73.png" /></p>
+<p><strong>Volver a comprobar el estado del repositorio.</strong>
+<img alt="Cambios después de deshacer todo" src="../../../images/pcr51/image-74.png" /></p>
+<p>Algo a tener en cuenta es que el fichero no lo elimina debido a que es un archivo nuevo, para solucionar esto simplemente
+usamos el comando <code>git clean</code>, junto a los parámetros: </p>
+<ul>
+<li><code>-f</code>: fuerza el borrado, obligatorio por defecto.</li>
+<li><code>-d</code>: muestra que archivos va a borrar, recomendado ejecutar el comando antes con -d para comprobar que borrará y después ejecutarlo sin este para borrar los archivos si nos interesa.</li>
+</ul>
+<p><img alt="Borrado de los archivos sin seguimiento" src="../../../images/pcr51/image-75.png" /></p>
+<h4 id="ejercicio-4_2">Ejercicio 4</h4>
+<p><strong>Eliminar la última línea del fichero <code>indice.txt</code> y guardarlo.</strong>
+<img alt="Borrado de la última línea del fichero" src="../../../images/pcr51/image-76.png" /></p>
+<p><strong>Eliminar el fichero <code>capitulos/capitulo3.txt</code>.</strong>
+<img alt="Borrado del fichero capitulo3.txt" src="../../../images/pcr51/image-77.png" /></p>
+<p><strong>Añadir los cambios a la zona de intercambio temporal y hacer un commit con el mensaje <em>“Borrado accidental.”</em></strong>
+<img alt="Borrado de archivos añadidos y commit del cambio" src="../../../images/pcr51/image-78.png" /></p>
+<p><strong>Comprobar el historial del repositorio.</strong></p>
+<p>Se comprueba el historial usando <code>git log</code>.
+<img alt="Comprobar historial con git log" src="../../../images/pcr51/image-79.png" /></p>
+<p><strong>Deshacer el último commit pero mantener los cambios anteriores en el directorio de trabajo y la zona de intercambio temporal.</strong></p>
+<p>Para esto debemos obtener el hash del cambio que queremos revertir, usando el comando anterior, tras eso lo copiamos y lo pegamos en el argumento del comando <code>git revert</code>
+El parámetro <code>-n</code> en el comando <code>git revert</code> permite revertir un commit sin que se haga automáticamente un commit nuevo con los archivos revertidos.</p>
+<p><img alt="Deshechos los cambios del commit" src="../../../images/pcr51/image-80.png" /></p>
+<p><strong>Comprobar el historial y el estado del repositorio.</strong>
+<img alt="Historial de cambio" src="../../../images/pcr51/image-81.png" />
+<img alt="Estado del repositorio" src="../../../images/pcr51/image-82.png" /></p>
+<p><strong>Volver a hacer el commit con el mismo mensaje de antes.</strong>
+<img alt="Commit de los cambios revertidos" src="../../../images/pcr51/image-83.png" /></p>
+<p><strong>Deshacer el último commit y los cambios anteriores del directorio de trabajo volviendo a la versión anterior del repositorio.</strong>
+<img alt="Deshacer commit de nuevo" src="../../../images/pcr51/image-84.png" />
+<img alt="Mensaje del commit automático" src="../../../images/pcr51/image-85.png" />
+<img alt="Cambios realizados" src="../../../images/pcr51/image-86.png" /></p>
+<p><strong>Comprobar de nuevo el historial y el estado del repositorio.</strong>
+<img alt="Comprobamos historial y estado del repositorio" src="../../../images/pcr51/image-87.png" /></p>
+<h3 id="gestion-de-ramas">Gestión de ramas</h3>
+<h4 id="ejercicio-1_4">Ejercicio 1</h4>
+<p><strong>Crear una nueva rama bibliografia y mostrar las ramas del repositorio.</strong>
+<img alt="Crear rama y mostrarla" src="../../../images/pcr51/image-106.png" /></p>
+<h4 id="ejercicio-2_4">Ejercicio 2</h4>
+<p><strong>Crear el fichero capitulos/capitulo4.txt y añadir el texto siguiente</strong>
+<img alt="Crear capitulo4.txt" src="../../../images/pcr51/image-107.png" /></p>
+<p><code>En este capítulo veremos cómo usar GitHub para alojar repositorios en remoto.</code></p>
+<p><strong>Añadir los cambios a la zona de intercambio temporal.</strong>
+<img alt="Añadir cambios a stage" src="../../../images/pcr51/image-108.png" /></p>
+<p><strong>Hacer un commit con el mensaje <em>“Añadido capítulo 4.”</em></strong>
+<img alt="Commit donde se añade el capítulo 4" src="../../../images/pcr51/image-109.png" /></p>
+<p><strong>Mostrar la historia del repositorio incluyendo todas las ramas.</strong>
+<img alt="Mostrar el historial de todas las ramas" src="../../../images/pcr51/image-110.png" /></p>
+<p>Bibliografía incluye todas las anteriores, como podemos comprobar si ejecutamos <code>git log bibliografia</code>
+<img alt="Historial de bibliografía" src="../../../images/pcr51/image-111.png" /></p>
+<h4 id="ejercicio-3_3">Ejercicio 3</h4>
+<p><strong>Cambiar a la rama bibliografia.</strong>
+<img alt="Cambio de rama" src="../../../images/pcr51/image-112.png" /></p>
+<p><strong>Crear el fichero bibliografia.txt y añadir la siguiente referencia</strong></p>
+<p><code>Chacon, S. and Straub, B. Pro Git. Apress.</code>
+<img alt="Creación de fichero bibliografia.txt" src="../../../images/pcr51/image-113.png" /></p>
+<p><strong>Añadir los cambios a la zona de intercambio temporal.</strong>
+<img alt="Añadir cambios a stage" src="../../../images/pcr51/image-114.png" /></p>
+<p><strong>Hacer un commit con el mensaje <em>“Añadida primera referencia bibliográfica.”</em></strong>
+<img alt="Commit de bibliografia.txt" src="../../../images/pcr51/image-115.png" /></p>
+<p><strong>Mostrar la historia del repositorio incluyendo todas las ramas.</strong>
+Esto se logra mediante <code>git log --all</code>
+<img alt="Historial del repositorio de todas las ramas" src="../../../images/pcr51/image-116.png" /></p>
+<h4 id="ejercicio-4_3">Ejercicio 4</h4>
+<p><strong>Fusionar la rama bibliografia con la rama master.</strong>
+<img alt="Fusión de la rama" src="../../../images/pcr51/image-118.png" /></p>
+<p><img alt="Mensaje de fusión de ramas" src="../../../images/pcr51/image-117.png" /></p>
+<p><strong>Mostrar la historia del repositorio incluyendo todas las ramas.</strong>
+<img alt="Historial de todas las ramas" src="../../../images/pcr51/image-119.png" /></p>
+<p><strong>Eliminar la rama bibliografia.</strong>
+<img alt="Eliminar rama" src="../../../images/pcr51/image-120.png" /></p>
+<p><strong>Mostrar de nuevo la historia del repositorio incluyendo todas las ramas.</strong>
+<img alt="Historial de todas las ramas" src="../../../images/pcr51/image-121.png" /></p>
+<h4 id="ejercicio-5_1">Ejercicio 5</h4>
+<p><strong>Crear la rama <code>bibliografia</code>.</strong>
+<img alt="Crear la rama bibliografia" src="../../../images/pcr51/image-122.png" /></p>
+<p><strong>Cambiar a la rama <code>bibliografia</code>.</strong>
+<img alt="Cambiar a la rama" src="../../../images/pcr51/image-123.png" /></p>
+<p><strong>Cambiar el fichero <code>bibliografia.txt</code> para que contenga las siguientes referencias:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Scott Chacon and Ben Straub. Pro Git. Apress.
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Ryan Hodson. Ry’s Git Tutorial. Smashwords (2014)
+</span></code></pre></div>
+<p><img alt="Cambiar fichero bibliografia.txt" src="../../../images/pcr51/image-124.png" /></p>
+<p><strong>Añadir los cambios a la zona de intercambio temporal y hacer un commit con el mensaje <em>“Añadida nueva referencia bibliográfica.”</em></strong>
+<img alt="Cambios añadido al stage y commit de ellos" src="../../../images/pcr51/image-125.png" /></p>
+<p><strong>Cambiar a la rama master.</strong>
+<img alt="Cambio a main" src="../../../images/pcr51/image-126.png" /></p>
+<p><strong>Cambiar el fichero <code>bibliografia.txt</code> para que contenga las siguientes referencias:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Chacon, S. and Straub, B. Pro Git. Apress.
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Loeliger, J. and McCullough, M. Version control with Git. O’Reilly.
+</span></code></pre></div>
+<p><img alt="Cambio de fichero bibliografia en main" src="../../../images/pcr51/image-127.png" /></p>
+<p><strong>Añadir los cambios a la zona de intercambio temporal y hacer un commit con el mensaje <em>“Añadida nueva referencia bibliográfica.”</em></strong>
+<img alt="Cambios añadidos al stage y commit de ellos" src="../../../images/pcr51/image-128.png" /></p>
+<p><strong>Fusionar la rama bibliografia con la rama master.</strong>
+<img alt="Merge con bibliografia" src="../../../images/pcr51/image-129.png" /></p>
+<p><strong>Resolver el conflicto dejando el fichero <code>bibliografia.txt</code> con las referencias:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Chacon, S. and Straub, B. Pro Git. Apress.
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Loeliger, J. and McCullough, M. Version control with Git. O’Reilly.
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Hodson, R. Ry’s Git Tutorial. Smashwords (2014)
+</span></code></pre></div>
+<p><img alt="Arreglo del conflicto" src="../../../images/pcr51/image-130.png" /></p>
+<p><strong>Añadir los cambios a la zona de intercambio temporal y hacer un commit con el mensaje <em>“Resuelto conflicto de bibliografía.”</em></strong>
+<img alt="Fichero añadido al stage y commit de el" src="../../../images/pcr51/image-131.png" /></p>
+<p><strong>Mostrar la historia del repositorio incluyendo todas las ramas.</strong>
+<img alt="Historial de cambio de todas las ramas" src="../../../images/pcr51/image-132.png" /></p>
+<h3 id="repositorios-remotos">Repositorios remotos</h3>
+<h4 id="ejercicio-1_5">Ejercicio 1</h4>
+<p><strong>Crear un nuevo repositorio público en GitHub con el nombre <code>libro-git</code>.</strong>
+<img alt="Creación de repo" src="../../../images/pcr51/image-133.png" /></p>
+<p><strong>Añadirlo al repositorio local del libro.</strong>
+<img alt="Añadir el repositorio remoto" src="../../../images/pcr51/image-134.png" /></p>
+<p><strong>Mostrar todos los repositorios remotos configurados.</strong>
+<img alt="Repositorios remotos configurados" src="../../../images/pcr51/image-135.png" /></p>
+<h4 id="ejercicio-2_5">Ejercicio 2</h4>
+<p><strong>Añadir los cambios del repositorio local al repositorio remoto de GitHub.</strong>
+<img alt="Subidos los cambios al repositorio remoto" src="../../../images/pcr51/image-136.png" /></p>
+<p>Cuando no existe una branch con el mismo nombre en la que estamos en el repositorio local, debemos de incluir el nombre de la branch que tendrá al final.</p>
+<p><strong>Acceder a GitHub y comprobar que se han subido los cambios mostrando el historial de versiones.</strong>
+<img alt="Muestra del github" src="../../../images/pcr51/image-137.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>

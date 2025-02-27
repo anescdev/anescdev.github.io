@@ -1,0 +1,1543 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../practica2-1/">
+      
+      
+        <link rel="next" href="../practica2-3/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+    
+    
+      
+        <title>Práctica 2.2: Autenticación en un servidor web Nginx - AnesCatmanDev Daw</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practica-22-autenticacion-en-un-servidor-web-nginx" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AnesCatmanDev Daw" class="md-header__button md-logo" aria-label="AnesCatmanDev Daw" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AnesCatmanDev Daw
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Práctica 2.2: Autenticación en un servidor web Nginx
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AnesCatmanDev Daw" class="md-nav__button md-logo" aria-label="AnesCatmanDev Daw" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AnesCatmanDev Daw
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DAWEB
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            DAWEB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica2-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 2.1: Instalación y configuración de un servidor web Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Práctica 2.2: Autenticación en un servidor web Nginx
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 2.2: Autenticación en un servidor web Nginx
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anadir-autenticacion-basic-a-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir autenticación basic a Nginx
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Añadir autenticación basic a Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generar-usuarios-y-contrasenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generar usuarios y contraseñas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurar-el-archivo-de-host-de-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurar el archivo de host de Nginx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probamos-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probamos web
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Probamos web">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inicio-de-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inicio de sesión
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inicio-de-sesion-exitoso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inicio de sesión exitoso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inicio-de-sesion-cancelado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inicio de sesión cancelado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autenticacion-en-una-ruta-especifica-del-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autenticación en una ruta específica del host
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Autenticación en una ruta específica del host">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-archivo-de-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del archivo de host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subida-de-web-a-la-nueva-ruta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subida de web a la nueva ruta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prueba-de-acceso-a-las-rutas-definidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prueba de acceso a las rutas definidas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restriccion-de-acceso-por-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restricción de acceso por IP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Restricción de acceso por IP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-archivo-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del archivo host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probamos-la-restriccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probamos la restricción
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restriccion-por-ip-y-por-usuario-simultanea" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restricción por IP y por usuario simultánea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Restricción por IP y por usuario simultánea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-archivo-host_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del archivo host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probamos-acceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probamos acceso
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cuestiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestiones
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referencias
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica2-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 2.3: Proxy inverso con Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica2-4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 2.4: Balanceo de carga con proxy inverso en Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica2-5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica 2.5: Proxy inverso y balanceo de carga con SSL en NGINX
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica2-amp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica de amplicación: Configuración de un servidor Nginx con Hosts Virtuales y directorios de usuario
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%203/practica3-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 3.1: Instalación de Tomcat y Maven para despliegue de aplicación Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%203/practica3-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 3.2: Despliegue de aplicaciones con Node Express y en Netlify
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%203/practica3-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 3.3: Despliegue de una aplicación Flask (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%204/practica4-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 4.1: Configuración de un servidor DNS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%205/practica5-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 5.1: Ejercicios de Git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 6
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 6
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%206/practica6-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 6.1: Dockerización del despliegue de una aplicación con NodeJS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%206/practica6-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 6.2: Despliegue de una aplicación PHP con Nginx y MySQL usando Docker y docker-compose
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%206/practica6-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 6.3: Despliegue de servidores web con usuarios autenticados mediante LDAP usando Docker y docker-compose
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anadir-autenticacion-basic-a-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir autenticación basic a Nginx
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Añadir autenticación basic a Nginx">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generar-usuarios-y-contrasenas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generar usuarios y contraseñas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurar-el-archivo-de-host-de-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurar el archivo de host de Nginx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probamos-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probamos web
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Probamos web">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inicio-de-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inicio de sesión
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inicio-de-sesion-exitoso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inicio de sesión exitoso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inicio-de-sesion-cancelado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inicio de sesión cancelado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autenticacion-en-una-ruta-especifica-del-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autenticación en una ruta específica del host
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Autenticación en una ruta específica del host">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-archivo-de-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del archivo de host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subida-de-web-a-la-nueva-ruta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subida de web a la nueva ruta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prueba-de-acceso-a-las-rutas-definidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prueba de acceso a las rutas definidas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restriccion-de-acceso-por-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restricción de acceso por IP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Restricción de acceso por IP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-archivo-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del archivo host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probamos-la-restriccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probamos la restricción
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restriccion-por-ip-y-por-usuario-simultanea" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restricción por IP y por usuario simultánea
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Restricción por IP y por usuario simultánea">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-archivo-host_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del archivo host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probamos-acceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probamos acceso
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cuestiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestiones
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referencias
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="practica-22-autenticacion-en-un-servidor-web-nginx">Práctica 2.2: Autenticación en un servidor web Nginx</h1>
+<h2 id="introduccion">Introducción</h2>
+<p>En esta práctica se va a implementar autenticación en Nginx, esta será la autenticación <code>basic</code> 
+la cuaĺ es definida en el estándar de HTTP, aunque sirve para algunas pruebas no es un método recomendado
+actualmente para la autenticación de usuarios ya que existen otras mucho más seguras y completas.</p>
+<p>Para hacer esto necesitaremos el paquete openssl para poder crear las contraseñas, generalmente viene 
+instalado pero en caso de que no, ejecuta el siguiente comando en tu máquina Debian 12, comprobará si 
+está instalado y en caso de que no, lo instalará automáticamente:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>openssl<span class="w"> </span>-h<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;OpenSSL está instalado en el sistema&quot;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">(</span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>openssl<span class="o">)</span>
+</span></code></pre></div>
+<h2 id="anadir-autenticacion-basic-a-nginx">Añadir autenticación basic a Nginx</h2>
+<h3 id="generar-usuarios-y-contrasenas">Generar usuarios y contraseñas</h3>
+<p><img alt="alt text" src="../../../images/prc22/nginx_auth_gen_user.png" />
+Para poder usar la autenticación "basic" de HTTP se debe de generar un usuario, contraseña y guardarlo en un archivo para que mas tarde sea
+referenciado por algún host configurado en Nginx y poder proteger las rutas haciéndolas accesibles únicamente con los usuarios del archivo. Dicho archivo deberá de tener la siguiente sintáxis:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&lt;usuario&gt;:&lt;hash-contraseña&gt;
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>&lt;usuario&gt;:&lt;hash-contraseña&gt;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>&lt;usuario&gt;:&lt;hash-contraseña&gt;
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>...
+</span></code></pre></div></p>
+<p>El primer comando que se ejecuta es para mostrar un mensaje con el nombre de usuario en terminal que es <code>echo</code> pero podemos redirigir la salida 
+del comando usando el operador de redirección <code>&gt;&gt;</code>, esto permite hacer lo que se ha comentado pero sin aplastar todo el contenido del archivo, 
+añadiendolo al final de este. El archivo como se ve en el comando es <code>.htpasswd</code> que se guardará dentro de <code>/etc/nginx</code>. </p>
+<p>El segundo comando usado lo que hace es usar el software <code>openssl</code> para generar el hash de la contraseña que elijamos, el parámetro <code>apr1</code>
+indica que el hash generado usará el algoritmo MD5 con la variante de apache. Nos preguntará por la contraseña de querramos hashear y escribirá 
+en la salida por defecto la contraseña hasheada pero redirigimos la salida al archivo <code>.htpasswd</code>;</p>
+<p>Si nos fijamos los comandos están envuelto con otro que es <code>sh</code> 
+debido a que necesitamos permisos de administrador para guardar o crear el archivo en ese directorio usando el operador de redirección.</p>
+<p>El uso de estos dos comandos reiteradas veces permitirá crear los usuarios. Si necesitas esto en otro archivo diferente simplemente cambia el
+nombre del archivo al que rediriges la salida y ya tendrás otro archivo con diferentes usuarios.</p>
+<h3 id="configurar-el-archivo-de-host-de-nginx">Configurar el archivo de host de Nginx</h3>
+<p><img alt="Configuración del host en Nginx" src="../../../images/prc22/nginx_auth_host_config.png" />
+Para poder proteger la web, se deberá de añadir dos directivas al archivo de host, estas directivas no se añaden al bloque <code>server{...}</code> sino
+al bloque <code>location{...}</code> para así poder tener en una misma web diferentes rutas las cuales unas estén disponible a todos los usuarios y otras
+a los usuarios que permitamos nosotros por medio del archivo que hemos creado.
+Como se ve en la captura necesitamos añadir las siguientes directivas:  </p>
+<ul>
+<li>auth_basic: con el mensaje que enviará al usuario si ha cancelado el inicio de sesión.</li>
+<li>auth_basic_user_file: ruta al archivo que hemos creado anteriormente. Puede estar en donde creas conveniente.</li>
+</ul>
+<h3 id="probamos-web">Probamos web</h3>
+<h4 id="inicio-de-sesion">Inicio de sesión</h4>
+<p><img alt="Formulario de inicio de sesión" src="../../../images/prc22/nginx_auth_login_form.png" /></p>
+<p>Al acceder a la ruta nos saltará un formulario del navegador donde nos pide que introduzcamos los credenciales para acceder, 
+estos credenciales si todo sale como tiene que salir, son los dos creados anteriormente, <code>manuel</code> y <code>ruiz</code> cuya contraseña 
+es el mismo usuario.</p>
+<h4 id="inicio-de-sesion-exitoso">Inicio de sesión exitoso</h4>
+<p><img alt="Web tras iniciar sesión" src="../../../images/prc22/nginx_auth_success_login.png" />
+Aquí se puede comprobar que tras introducir los credenciales correctos podemos acceder a la web que ya teníamos. Si nos 
+fijamos en las cabeceras enviadas hay una muy importante que es <code>Authorization</code> donde indica que el tipo de autenticación 
+es <code>basic</code> junto al usuario y contraseña codificados en base64.</p>
+<h4 id="inicio-de-sesion-cancelado">Inicio de sesión cancelado</h4>
+<p><img alt="Web tras cancelar el incio de sesión" src="../../../images/prc22/nginx_auth_cancel_login.png" />
+Si cancelamos el inicio de sesión, la web mostrará el error 401 del estándar HTTP, este se muestra cuando un usuario intenta 
+acceder a un recurso protegido en un servidor sin introducir unas credenciales válidas. En la captura se puede ver en las 
+cabeceras de respuesta la cabecera <code>WWW-Authenticate</code> que indica de nuevo el tipo de autenticación y una palabra clave 
+<code>realm</code> que contiene el mensaje que introducimos en el apartado anterior.</p>
+<h2 id="autenticacion-en-una-ruta-especifica-del-host">Autenticación en una ruta específica del host</h2>
+<p>Antes comentábamos que podíamos proteger diferentes rutas del host en vez de todas a la vez, esto se hace creando 
+diferentes bloques <code>location{...}</code> que apunten a diferentes rutas del servidor y añadiendo la autorización a las que veamos conveniente. Aquí un ejemplo:</p>
+<h3 id="configuracion-del-archivo-de-host">Configuración del archivo de host</h3>
+<p><img alt="Configuración del host con dos bloques location" src="../../../images/prc22/nginx_auth_two_locations_config.png" /></p>
+<p>Como se ve en la captura tenemos otra ruta en el servidor que es <code>/noveas</code>, esta ruta será que protejamos con la autenticación por lo 
+que vamos a aprovechar la configuración, y mover la configuración de la autenticación únicamente hacia el nuevo <code>location /noveas {...}</code>.</p>
+<p>Si nos fijamos la directiva <code>try_files</code> solo aparece una sola vez en vez de en los 2 bloques location, esto es porque en el primer 
+bloque apuntamos a todos los directorios del host, y el segundo location es un subdirectorio del host por lo que no es necesario usar
+esa directiva, podría incluso fallar el servidor.</p>
+<p>Tras esto se reinicia nginx usando:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>nginx
+</span></code></pre></div></p>
+<h3 id="subida-de-web-a-la-nueva-ruta">Subida de web a la nueva ruta</h3>
+<p><img alt="Subida de web al servidor" src="../../../images/prc22/nginx_auth_upload_file_sftp.png" /></p>
+<p>Para probar la nueva configuración vamos a crear un archivo de prueba más que solo será accesible con contraseña, entonces para subirlo 
+usaré el cliente FTP Filezilla, iniciamos sesión en el servidor que configuramos en la anterior práctica y dentro de la carpeta 
+correspondiente creamos el directorio <code>noveas</code>, y dentro metemos el archivo de nuestro sistema.</p>
+<h3 id="prueba-de-acceso-a-las-rutas-definidas">Prueba de acceso a las rutas definidas</h3>
+<p><img alt="Prueba de que la raíz ya no tiene autenticación" src="../../../images/prc22/nginx_auth_two_root_test.png" /></p>
+<p>Si intentamos acceder a la ruta principal, veremos que no tenemos la autenticación como antes teníamos.</p>
+<p><img alt="Prueba de que en la nueva ruta ya nos pide autenticarnos" src="../../../images/prc22/nginx_auth_noveas_login.png" /></p>
+<p><img alt="Prueba después de autenticarse en la nueva ruta" src="../../../images/prc22/nginx_auth_noveas_success.png" /></p>
+<p>Al intentar acceder a la ruta <code>noveas</code> si que nos pedirán autenticación y al pasarles las credenciales correctas podemos ver que 
+nos permiten acceder al archivo index.html que subimos.</p>
+<h2 id="restriccion-de-acceso-por-ip">Restricción de acceso por IP</h2>
+<p>Nginx nos permite también rechazar las peticiones de clientes con cierta IP, útil por ejemplo en una red local donde los equipos tengan todos una IP fija y así permitir únicamente a ciertos equipos acceder a partes de la red.</p>
+<h3 id="configuracion-del-archivo-host">Configuración del archivo host</h3>
+<p><img alt="Configuración con denegación de IP" src="../../../images/prc22/nginx_auth_deny_host.png" /></p>
+<p>Para poder denegar el acceso a una IP debemos de usar la directiva <code>deny</code> la cuál tiene 2 valores posibles:</p>
+<ul>
+<li>all: deniega el acceso a todas las IP.</li>
+<li>&lt;IP&gt;: Deniega el acceso a la ip que indiquemos.</li>
+</ul>
+<p>En mi caso para hacer la prueba voy a denegar el acceso a mi máquina anfitriona para probar que deniega la conexión, por lo que coloco 
+la ip correspondiente y guardamos la configuración.</p>
+<p>Tras esto se reinicia Nginx con:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>nginx
+</span></code></pre></div></p>
+<h3 id="probamos-la-restriccion">Probamos la restricción</h3>
+<p><img alt="Prueba de acceso denegado" src="../../../images/prc22/nginx_auth_access_denied_host.png" /></p>
+<p>Al intentar acceder a la ruta <code>noveas</code> con la nueva configuración podemos ver que nos muestra un error 403.</p>
+<p><img alt="Logs de error" src="../../../images/prc22/nginx_auth_access_denied_host_logs.png" />.</p>
+<p>Los logs que se ven en la captura indica que el acceso a la ruta ha sido denegado ya que el cliente coincide con la IP.</p>
+<h2 id="restriccion-por-ip-y-por-usuario-simultanea">Restricción por IP y por usuario simultánea</h2>
+<p>Nginx nos permite restringir el acceso tanto por IP y cuenta de usuario a la vez, permitiendo proteger recursos de accesos no 
+autorizados, esto se logra mediante la palabra clave <code>satisfy</code>, que permite los valores:</p>
+<ul>
+<li>any: Para que no devuelva 403, debe cumplir al menos la directiva de <code>auth</code> (no especifico la de basic ya que pueden haber de 
+diferentes tipos) o la directiva de restricción por IP.</li>
+<li>all: Esta es parecida a la anterior solo que obliga a cumplir todas las directivas.</li>
+</ul>
+<h3 id="configuracion-del-archivo-host_1">Configuración del archivo host</h3>
+<p><img alt="Configuración de archivo host para restricción simultánea" src="../../../images/prc22/nginx_auth_simultaneous_restrictions.png" /></p>
+<p>En la captura se muestra una configuración que obliga a que el usuario se tenga que autenticar con una credencial válida y 
+que su IP coincida con <code>192.168.18.92</code> gracias a la directiva <code>allow</code>. Y si no coincide con esta, se rechazará la conexión 
+devolviendo el código 403 ya que hemos puesto la directiva <code>deny all</code> para que rechace cualquier conexión.</p>
+<p>Es muy importante el orden ya que si colocamos <code>deny all</code> antes de la directiva <code>allow</code> se rechazarán todas la conexiones ya 
+que las restricciones se aplican por orden de aparición en el bloque de configuración</p>
+<h3 id="probamos-acceso">Probamos acceso</h3>
+<p><img alt="Prueba de restricción simultánea" src="../../../images/prc22/nginx_auth_simultaneous_test_auth.png" /></p>
+<p>Como podemos comprobar nos deja acceder ya que tenemos que la única IP que puede acceder al recurso la tiene la máquina anfitriona 
+pero necesitamos iniciar sesión ya que también tenemos configurada la autenticación básica.</p>
+<p><img alt="Logs de la restricción simultánea" src="../../../images/prc22/nginx_auth_simultaneous_logs.png" /></p>
+<p>Aquí podemos ver los logs de acceso y como en ellos se ve el que el usuario Manuel ha sido el que ha iniciado sesión</p>
+<h2 id="cuestiones">Cuestiones</h2>
+<p>A continuación se va a responder las cuestiones que se proponen en la práctica</p>
+<div class="admonition question">
+<p class="admonition-title">Cuestión 1</p>
+<p>Supongamos que yo soy el cliente con la IP 172.1.10.15 e intento acceder al directorio web_muy_guay de mi sitio web, equivocándome al poner el usuario y contraseña. ¿Podré acceder?¿Por qué?
+<div class="language-nginx highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">location</span><span class="w"> </span><span class="s">/web_muy_guay</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="c1">#...</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="kn">satisfy</span><span class="w"> </span><span class="s">all</span><span class="p">;</span><span class="w">    </span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kn">deny</span><span class="w">  </span><span class="mi">172</span><span class="s">.1.10.6</span><span class="p">;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="kn">allow</span><span class="w"> </span><span class="mi">172</span><span class="s">.1.10.15</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="kn">allow</span><span class="w"> </span><span class="mi">172</span><span class="s">.1.3.14</span><span class="p">;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="kn">deny</span><span class="w">  </span><span class="s">all</span><span class="p">;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="kn">auth_basic</span><span class="w"> </span><span class="s">&quot;Cuestión</span><span class="w"> </span><span class="s">final</span><span class="w"> </span><span class="mi">1</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="kn">auth_basic_user_file</span><span class="w"> </span><span class="s">conf/htpasswd</span><span class="p">;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="p">}</span>
+</span></code></pre></div>
+No podrá acceder debido a la directiva <code>satisfy all</code> ya que aunque su IP sean de las permitidas, no cumple con la autenticación básica ya que la directiva nombrada obliga a cumplir todas las condiciones.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Cuestión 2</p>
+<p>Supongamos que yo soy el cliente con la IP 172.1.10.15 e intento acceder al directorio web_muy_guay de mi sitio web, equivocándome al poner el usuario y contraseña. ¿Podré acceder?¿Por qué?
+<div class="language-nginx highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">location</span><span class="w"> </span><span class="s">/web_muy_guay</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="c1">#...</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="kn">satisfy</span><span class="w"> </span><span class="s">all</span><span class="p">;</span><span class="w">    </span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="kn">deny</span><span class="w">  </span><span class="s">all</span><span class="p">;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="kn">deny</span><span class="w">  </span><span class="mi">172</span><span class="s">.1.10.6</span><span class="p">;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="kn">allow</span><span class="w"> </span><span class="mi">172</span><span class="s">.1.10.15</span><span class="p">;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="kn">allow</span><span class="w"> </span><span class="mi">172</span><span class="s">.1.3.14</span><span class="p">;</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="kn">auth_basic</span><span class="w"> </span><span class="s">&quot;Cuestión</span><span class="w"> </span><span class="s">final</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="s">The</span><span class="w"> </span><span class="s">revenge&quot;</span><span class="p">;</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="kn">auth_basic_user_file</span><span class="w"> </span><span class="s">conf/htpasswd</span><span class="p">;</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">}</span>
+</span></code></pre></div>
+Para empezar no podrá acceder al inicio de sesión por culpa de la directiva <code>deny all</code> ya que al ir antes que todas, 
+deniegan todas las peticiones al en <code>web_muy_guay</code> aunque después la permita. Como se nombró en la práctica, las restricciones
+se aplican por orden de aparición.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Cuestión 3</p>
+<p>Supongamos que yo soy el cliente con la IP 172.1.10.15 e intento acceder al directorio web_muy_guay de mi sitio web, introduciendo correctamente usuario y contraseña. ¿Podré acceder?¿Por qué?
+<div class="language-nginx highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">location</span><span class="w"> </span><span class="s">/web_muy_guay</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="c1">#...</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="kn">satisfy</span><span class="w"> </span><span class="s">any</span><span class="p">;</span><span class="w">    </span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="kn">deny</span><span class="w">  </span><span class="mi">172</span><span class="s">.1.10.6</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="kn">deny</span><span class="w"> </span><span class="mi">172</span><span class="s">.1.10.15</span><span class="p">;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="kn">allow</span><span class="w"> </span><span class="mi">172</span><span class="s">.1.3.14</span><span class="p">;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="kn">auth_basic</span><span class="w"> </span><span class="s">&quot;Cuestión</span><span class="w"> </span><span class="s">final</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="s">The</span><span class="w"> </span><span class="s">final</span><span class="w"> </span><span class="s">combat&quot;</span><span class="p">;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="kn">auth_basic_user_file</span><span class="w"> </span><span class="s">conf/htpasswd</span><span class="p">;</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">}</span>
+</span></code></pre></div>
+El cliente aunque tenga denegada la IP, al estar la directiva <code>satisfy any</code> va a permitir entrar a la web solo si pasa las credenciales 
+correctas ya que la directiva permite que pueda acceder a la web si cumple algunas de las directivas.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Cuestión 4</p>
+<p>A lo mejor no sabéis que tengo una web para documentar todas mis excursiones espaciales con Jeff, es esta: <a href="https://freewebsitetemplates.com/preview/space-science/index.html">Jeff Bezos y yo</a></p>
+<p>Supongamos que quiero restringir el acceso al directorio de <a href="https://freewebsitetemplates.com/preview/space-science/projects.html">proyectos</a> porque es muy secreto, eso quiere decir añadir autenticación básica a la URL:Proyectos</p>
+<p>Completa la configuración para conseguirlo:
+<div class="language-nginx highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="s">[::]:80</span><span class="p">;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kn">root</span><span class="w"> </span><span class="s">/var/www/freewebsitetemplates.com/preview/space-science</span><span class="p">;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="kn">index</span><span class="w"> </span><span class="s">index.html</span><span class="w"> </span><span class="s">index.htm</span><span class="w"> </span><span class="s">index.nginx-debian.html</span><span class="p">;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">freewebsitetemplates.com</span><span class="w"> </span><span class="s">www.freewebsitetemplates.com</span><span class="p">;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="kn">try_files</span><span class="w"> </span><span class="nv">$uri</span><span class="w"> </span><span class="nv">$uri/</span><span class="w"> </span><span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="c1"># Mi aporte a la configuración</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="p">~</span><span class="sr">*</span><span class="w"> </span><span class="s">/projects.html</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">        </span><span class="kn">auth_basic</span><span class="w">  </span><span class="s">&quot;Estos</span><span class="w"> </span><span class="s">son</span><span class="w"> </span><span class="s">proyectos</span><span class="w"> </span><span class="s">secretísimos</span><span class="w"> </span><span class="s">con</span><span class="w"> </span><span class="s">Bezos</span><span class="w"> </span><span class="s">y</span><span class="w"> </span><span class="s">yo,</span><span class="w"> </span><span class="s">tu</span><span class="w"> </span><span class="s">no</span><span class="w"> </span><span class="s">entras</span><span class="w"> </span><span class="s">aquí.&quot;</span><span class="p">;</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span><span class="kn">auth_basic_user_file</span><span class="w"> </span><span class="s">/etc/nginx/.bezosxme</span><span class="p">;</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="p">}</span>
+</span></code></pre></div></p>
+</div>
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication">MDN</a></li>
+<li><a href="https://raul-profesor.github.io/DEAW/P1.2/">Material del profesor</a></li>
+<li><a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#location">Documentación de Nginx</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>

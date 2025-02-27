@@ -1,0 +1,1353 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../Tema%202/practica2-amp/">
+      
+      
+        <link rel="next" href="../practica3-2/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+    
+    
+      
+        <title>Práctica 3.1: Instalación de Tomcat y Maven para despliegue de aplicación Java - AnesCatmanDev Daw</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practica-31-instalacion-de-tomcat-y-maven-para-despliegue-de-aplicacion-java" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="AnesCatmanDev Daw" class="md-header__button md-logo" aria-label="AnesCatmanDev Daw" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AnesCatmanDev Daw
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Práctica 3.1: Instalación de Tomcat y Maven para despliegue de aplicación Java
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="AnesCatmanDev Daw" class="md-nav__button md-logo" aria-label="AnesCatmanDev Daw" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AnesCatmanDev Daw
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Welcome to MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DAWEB
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            DAWEB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%202/practica2-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 2.1: Instalación y configuración de un servidor web Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%202/practica2-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 2.2: Autenticación en un servidor web Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%202/practica2-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 2.3: Proxy inverso con Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%202/practica2-4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 2.4: Balanceo de carga con proxy inverso en Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%202/practica2-5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practica 2.5: Proxy inverso y balanceo de carga con SSL en NGINX
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%202/practica2-amp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica de amplicación: Configuración de un servidor Nginx con Hosts Virtuales y directorios de usuario
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Práctica 3.1: Instalación de Tomcat y Maven para despliegue de aplicación Java
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 3.1: Instalación de Tomcat y Maven para despliegue de aplicación Java
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tomcat
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tomcat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisitos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-de-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación de Tomcat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración tomcat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceso-al-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acceso al panel
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#despliegue-manual-de-jar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Despliegue Manual de Jar
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#despliegue-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Despliegue automático
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Despliegue automático">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-de-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación de Maven
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-usuario-de-tomcat-para-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración de usuario de Tomcat para Maven
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anadir-usuario-al-listado-de-servidores-de-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir usuario al listado de servidores de Maven
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurar-un-proyecto-de-java-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurar un proyecto de Java Maven
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurar un proyecto de Java Maven">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-pom" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del POM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#despliegue-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Despliegue del proyecto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cuestiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestiones
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica3-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 3.2: Despliegue de aplicaciones con Node Express y en Netlify
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica3-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 3.3: Despliegue de una aplicación Flask (Python)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%204/practica4-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 4.1: Configuración de un servidor DNS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%205/practica5-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 5.1: Ejercicios de Git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tema 6
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Tema 6
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%206/practica6-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 6.1: Dockerización del despliegue de una aplicación con NodeJS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%206/practica6-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 6.2: Despliegue de una aplicación PHP con Nginx y MySQL usando Docker y docker-compose
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tema%206/practica6-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Práctica 6.3: Despliegue de servidores web con usuarios autenticados mediante LDAP usando Docker y docker-compose
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tomcat
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tomcat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisitos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-de-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación de Tomcat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración tomcat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceso-al-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acceso al panel
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#despliegue-manual-de-jar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Despliegue Manual de Jar
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#despliegue-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Despliegue automático
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Despliegue automático">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-de-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación de Maven
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-de-usuario-de-tomcat-para-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración de usuario de Tomcat para Maven
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anadir-usuario-al-listado-de-servidores-de-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadir usuario al listado de servidores de Maven
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurar-un-proyecto-de-java-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurar un proyecto de Java Maven
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurar un proyecto de Java Maven">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-pom" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del POM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#despliegue-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Despliegue del proyecto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cuestiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cuestiones
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="practica-31-instalacion-de-tomcat-y-maven-para-despliegue-de-aplicacion-java">Práctica 3.1: Instalación de Tomcat y Maven para despliegue de aplicación Java</h1>
+<h2 id="tomcat">Tomcat</h2>
+<p>Tomcat es un servidor de aplicaciones Java muy conocido que permite gestionar instancias de aplicaciones webs y desplegarlas 
+de forma automática o de forma manual. En esta práctica veremos como instalarlo en Debian 12 y como desplegar aplicaciones 
+en el servidor, tanto manual como automáticamente</p>
+<h3 id="prerequisitos">Prerequisitos</h3>
+<p>Para poder instalar Tomcat, debemos instalar Java ya que está desarrollado en esa tecnología, en mi caso voy a instalar
+la versión 17 ya que es la versión por defecto que ofrecen los repositorios oficiales de Debian 12. Para ello instalamos 
+el JRE, ya que para ejecutar aplicaciones, no nos hace falta el JDK.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>default-jre
+</span></code></pre></div>
+A día de 12-11-2024 la versión por defecto es la 17, en un futuro es posible que cambie por lo que deberás de tenerlo 
+en cuenta y asegurarte de que la versión de Tomcat sea compatible con esa.</p>
+<p><img alt="Versión de java" src="../../../images/pcr31/java_installation_version.png" /></p>
+<p>Si todo ha salido bien, al usar java --version debería de imprimir la versión instalada tal y como en la captura
+de pantalla.</p>
+<h3 id="instalacion-de-tomcat">Instalación de Tomcat</h3>
+<p><img alt="Instalación de Tomcat 10" src="../../../images/pcr31/tomcat_installation.png" /></p>
+<p>Para instalar Tomcat 10, Debian 12 ofrece en sus repositorios oficiales un paquete para que su instalación sea 
+lo más sencilla posible en su sistema, por lo que tiraremos de ese paquete usando el comando que se muestra en la captura 
+para comenzar con su instalación.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>tomcat10<span class="w"> </span>tomcat10-admin<span class="w"> </span><span class="c1"># tomcat10-docs</span>
+</span></code></pre></div>
+El paquete tomcat10-docs es para que puedas tener su documentación offline, instalar si lo ves necesario.</p>
+<p><img alt="Acceso a Tomcat" src="../../../images/pcr31/tomcat_first_access.png" /></p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANTE</p>
+<p>Si tienes una aplicación que esté escuchando en el puerto <code>8080</code>, Tomcat <strong>no podrá iniciar</strong> a no ser que cambies el puerto
+en Tomcat o cierres la aplicación.</p>
+</div>
+<p>Una vez instalado solo queda ejecutar el servicio con el comando:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>tomcat10
+</span></code></pre></div></p>
+<p>Este comando no es necesario ponerlo siempre ya que al instalar tomcat, apt configura tomcat para que se ejecute al inicio
+del servidor, en caso de que no haga esto simplemente ejecutar el comando: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>tomcat10
+</span></code></pre></div>
+<p>Y cuando reinicies el servidor se ejecutará al inicio.</p>
+<p>Entonces ya podrás entrar a la aplicación web de Tomcat, en la siguiente URL: <code>http://&lt;dirección_servidor&gt;:8080</code>. Se mostraría
+algo como en la captura de pantalla</p>
+<h3 id="configuracion-tomcat">Configuración tomcat</h3>
+<p>Para poder usar el panel de administración debemos de crear un usuario de en el XML de configuración de Tomcat,
+en este caso al instalarlo con apt, este archivo está en la ruta que muestra el directorio que muestra el bloque de código.</p>
+<p>Para crear un usuario nos tenemos que posicionar dentro de la etiqueta <code>&lt;tomcat-users&gt;</code>, y escribir la etiqueta <code>user</code> que
+contendrá un atributo para el nombre de usuario, otro para la contraseña y otro para escribir los roles del usuario separados
+por coma.
+<div class="language-xml highlight"><span class="filename">/etc/tomcat10/tomcat-users.xml</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>...<span class="w"> </span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">&lt;tomcat-users</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://tomcat.apache.org/xml&quot;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">              </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">              </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://tomcat.apache.org/xml tomcat-users.xsd&quot;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">              </span><span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="cm">&lt;!--Comentarios que explica el tema de la configuración del usuario--&gt;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="nt">&lt;user</span><span class="w"> </span><span class="na">username=</span><span class="s">&quot;anes&quot;</span><span class="w"> </span><span class="na">password=</span><span class="s">&quot;anes&quot;</span><span class="w"> </span><span class="na">roles=</span><span class="s">&quot;admin-gui,manager-gui&quot;</span><span class="nt">/&gt;</span>
+</span></code></pre></div></p>
+<p>Una vez hecho esto deberemos de guardar el archivo y reinciar el servicio de Tomcat para que cargue el usuario creado,
+esto se hace con el siguiente comando: 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>tomcat10
+</span></code></pre></div></p>
+<h3 id="acceso-al-panel">Acceso al panel</h3>
+<p>Para comprobar accedemos a la URL <code>/manager/html</code>, entonces nos pedirá un usuario y contraseña por medio de Basic Authentication,
+le indicamos el que hemos creado en el archivo XML e iniciamos sesión</p>
+<p><img alt="Login del panel" src="../../../images/pcr31/tomcat_login_panel.png" /></p>
+<p>Si todo ha salido como debía, se debe de mostrar un panel como en el de la siguiente captura, en el que podremos desplegar y
+gestionar las aplicaciones web de Java.</p>
+<p><img alt="Panel de administración Tomcat" src="../../../images/pcr31/tomcat_manager.png" /></p>
+<h2 id="despliegue-manual-de-jar">Despliegue Manual de Jar</h2>
+<div class="admonition info">
+<p class="admonition-title">Enlace de descarga del WAR</p>
+<p><a href="https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/">https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/</a></p>
+</div>
+<p>Para comprobar que el despliegue de aplicaciones se hace correctamente, usaremos el WAR de prueba proporcionado por Tomcat
+debido a que el WAR proporcionado por Moodle por alguna razón crasheaba al hacer el intento de despliegue.</p>
+<p><img alt="Subida del WAR" src="../../../images/pcr31/tomcat_upload_war.png" /></p>
+<p>Para subirlo de forma manual por medio del GUI, Tomcat nos proporciona un dos formularios, uno donde podemos desplegar un WAR
+que ya está presente en el sistema de archivos del servidor, o subir desde nuestro equipo el WAR, que será el formulario que
+usaremos, elegiremos el archivo usando el campo correspondiente y daremos click en el botón de Desplegar.</p>
+<p><img alt="Prueba de que la APP está subida" src="../../../images/pcr31/tomcat_deployed_apps.png" /></p>
+<p>Como se ve en el listado de aplicaciones se muestra la aplicación sample que es la que hemos subido, y el botón de <code>Desplegar</code>
+está desactivado nos indica que está en ejecución la aplicación web.</p>
+<p>Para acceder a ella y probar haremos click sobre le nombre de la aplicación web, que nos redirigirá a la URL donde se desplegó.</p>
+<p><img alt="Dentro de la app web de prueba" src="../../../images/pcr31/deployed_sample_app.png" /></p>
+<p>Como se ve en la captura, la app funciona correctamente por lo que ya podemos ir al siguiente punto.</p>
+<h2 id="despliegue-automatico">Despliegue automático</h2>
+<p>Cuando trabajamos con un proyecto de Java Maven, esta herramienta nos permite entre otras, desplegar la aplicación cuando 
+sintamos que está preparada para producción (en verdad se usaría CI/CD pero para esta práctica lo haremos así).</p>
+<h3 id="instalacion-de-maven">Instalación de Maven</h3>
+<p>Para configurar un proyecto Maven con esa funcionalidad, el primer paso es tener instalado Maven que tiene un paquete 
+en los repositorios de Debian 12, por lo que nos valdremos del siguiente comando para instalarlo.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>maven
+</span></code></pre></div>
+<img alt="Versión instalada de Maven" src="../../../images/pcr31/maven_installation.png" /></p>
+<p>Para comprobar que ha sido instalado correctamente simplemente ejecutamos el comando que se ve en la captura para que 
+muestre la versión de maven instalada.</p>
+<h3 id="configuracion-de-usuario-de-tomcat-para-maven">Configuración de usuario de Tomcat para Maven</h3>
+<p>Para poder desplegar desde Maven, se recomienda crear en Tomcat un usuario exclusivamente para esta tarea que tenga el rol de 
+<code>manager-script</code> que da acceso al usuario usar la API HTTP de Tomcat</p>
+<p><img alt="Usuario con el rol necesario" src="../../../images/pcr31/maven_user_tomcat.png" /></p>
+<p>Se deberá de hacer en el mismo fichero donde se creo el usuario del administrador de aplicaciones web, es decir <code>/etc/tomcat10/tomcat-users.xml</code></p>
+<p>Se guarda el archivo y se reinicia el servicio de Tomcat para que cargue el usuario creado con el comando:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>tomcat10
+</span></code></pre></div></p>
+<h3 id="anadir-usuario-al-listado-de-servidores-de-maven">Añadir usuario al listado de servidores de Maven</h3>
+<p>Ahora tenemos que añadir en la configuración de servidores de Maven las credenciales del usuario de Tomcat para que cuando llegue
+el momento de despliegue, las obtenga de ahí. Por lo que primeramente modificaremos el archivo <code>/etc/maven/settings.xml</code>, buscando la etiqueta
+<code>servers</code> y añadiendo una etiqueta <code>server</code> dentro de esta que contendrá 3 etiquetas dentro:</p>
+<ul>
+<li><code>id</code>: Id del servidor en maven, puede ser el que quieras</li>
+<li><code>username</code>: usuario del servidor, en este caso el de Tomcat</li>
+<li><code>password</code>: contraseña del servidor, en este caso la de Tomcat</li>
+</ul>
+<p><img alt="Añadir a maven las credenciales" src="../../../images/pcr31/maven_user_configuration.png" /></p>
+<p>Guardamos el archivo y vayamos al siguiente paso</p>
+<h3 id="configurar-un-proyecto-de-java-maven">Configurar un proyecto de Java Maven</h3>
+<p>Para este paso necesitaremos un proyecto Java que use Maven, podemos generarlo con un archetype pero en este caso usaremos el repositorio que
+la práctica propone para la tarea 1 y así matar dos pájaros de un solo tiro. Clonamos el repo con el siguiente comando, que después accederá
+para cambiar la rama a <code>patch-1</code>.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/cameronmcnz/rock-paper-scissors.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rock-paper-scissors<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>patch-1
+</span></code></pre></div></p>
+<h4 id="configuracion-del-pom">Configuración del POM</h4>
+<p>Una vez aquí debemos de acceder al fichero <code>pom.xml</code> que es el que usa Maven para configurar un proyecto Java, pues dentro de este debemos de buscar
+la etiqueta <code>plugins</code> y asegurarnos que esté contenida por <code>build</code> (no tiene que ser hijo directo). Una vez localizado debemos de crear una etiqueta
+<code>plugin</code> que contenga exactamente el mismo contenido que el último plugin de la captura, vamos a saltar directamente a la etiqueta <code>configuration</code> ya que las demás son comunes de maven: </p>
+<ul>
+<li><code>url</code>: Url de tomcat a la que se conectará para subir los cambios, esta será la dirección al servidor de Tomcat mas el path <code>/manager/text</code>.</li>
+<li><code>server</code>: Aquí colocaremos el id del servidor que configuramos en el paso anterior para que obtenga las credenciales para el deploy</li>
+<li><code>path</code>: Será la ruta donde se desplegará la aplicación</li>
+</ul>
+<p><img alt="Configuración pom.xml" src="../../../images/pcr31/maven_project_pom.png" /></p>
+<h4 id="despliegue-del-proyecto">Despliegue del proyecto</h4>
+<p>Para desplegar nos valdremos del comando <code>mvn tomcat7:deploy</code> que se encargará de compilar y mandar los archivos compilados al servidor de tomcat 
+según los parámetros configurados previamente. Tal y como se hace en la siguiente captura con el resultado de lo que debería salir si todo sale bien.</p>
+<p><img alt="Good ending maven" src="../../../images/pcr31/maven_good_ending.png" /></p>
+<p>Ahora accedemos al panel de Tomcat para comprobar que la aplicación fue desplegada con éxito</p>
+<p><img alt="Good ending panel" src="../../../images/pcr31/maven_good_ending.png" /></p>
+<p>Para terminar comprobaremos si funciona la aplicación web descargada, accediendo a la ruta donde la desplegamos</p>
+<p><img alt="Demostración piedra papel tijeras" src="../../../images/pcr31/maven_rps_good_ending.png" /></p>
+<h2 id="cuestiones">Cuestiones</h2>
+<div class="admonition task">
+<p class="admonition-title">Cuestión 1</p>
+<p>Habéis visto que los archivos de configuración que hemos tocado contienen contraseñas en texto plano, por lo que cualquiera con acceso a ellos obtendría las credenciales de nuestras herramientas.</p>
+<p>En principio esto representa un gran riesgo de seguridad, ¿sabrías razonar o averigüar por qué esto está diseñado de esta forma?</p>
+</div>
+<p>Esto es debido a que se espera que el administrador del sistema al instalar tomcat, estos ficheros únicamente sean accesibles por root y por el 
+usuario que ejecuta Tomcat y por ninguno más, para así proteger las contraseñas, tal y como el archivo <code>/etc/shadow</code> que no puede verlo nadie
+sin permisos de administrador.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
